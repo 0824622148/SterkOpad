@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eazy OGee — SterkOpad Entertainment</title>
+  <meta name="description" content="Eazy OGee is a Johannesburg-based Hip-Hop artist signed to SterkOpad Entertainment. Stream his latest releases and book him for your next event." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="SterkOpad Entertainment — Home">
+        <img src="images/logo.png" alt="SterkOpad Entertainment" width="120" height="44" />
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="artists.html">Artists</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="contact.html">Work With Us</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a href="contact.html#demo" class="btn btn--primary btn--sm">Submit Demo</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <nav class="nav__mobile" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="artists.html">Artists</a>
+    <a href="services.html">Services</a>
+    <a href="media.html">Media</a>
+    <a href="contact.html">Work With Us</a>
+    <a href="contact.html#demo" class="btn btn--primary" style="margin-top:16px">Submit Demo</a>
+  </nav>
+
+  <!-- ARTIST HERO -->
+  <section class="hero hero--artist" aria-label="Eazy OGee hero">
+    <div class="hero__bg">
+      <img src="images/artist-eazy-ogee.jpg" alt="Eazy OGee" width="1920" height="1080" fetchpriority="high" />
+    </div>
+    <div class="hero__content">
+      <a href="artists.html" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-sub);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-400);margin-bottom:var(--space-3);transition:color var(--transition);"
+         onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--grey-400)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+        All Artists
+      </a>
+      <div class="overline" style="margin-bottom:var(--space-1);">Hip-Hop / Rap</div>
+      <h1 class="hero__title animate-in" style="font-size:clamp(4rem,12vw,10rem);">Eazy OGee</h1>
+      <div class="hero__actions animate-in animate-in--delay-1">
+        <a href="contact.html#booking" class="btn btn--primary btn--lg">Book Eazy OGee</a>
+        <a href="#music" class="btn btn--secondary btn--lg">Listen Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="section section--dark" id="bio" aria-label="Artist biography">
+    <div class="container">
+      <div class="artist-bio">
+        <div class="artist-bio__text animate-in">
+          <div class="overline" style="margin-bottom:var(--space-2);">Biography</div>
+          <h2 style="color:var(--white);margin-bottom:var(--space-3);">The <span style="color:var(--red);">Story</span></h2>
+          <p>
+            Eazy OGee is one of Johannesburg's most authentic voices in Hip-Hop. With a sound rooted in the streets of Joburg and lyrics that reflect real lived experience, Eazy has built a reputation as an artist who doesn't compromise.
+          </p>
+          <p>
+            Known for his raw delivery and cinematic storytelling, Eazy draws inspiration from the hardships, victories, and culture of life in South Africa. His music carries weight — every bar intentional, every hook unforgettable.
+          </p>
+          <p>
+            Signed to SterkOpad Entertainment, Eazy OGee continues to push boundaries and build a legacy that will last beyond the music.
+          </p>
+
+          <!-- Stats -->
+          <div class="artist-stats">
+            <div class="artist-stats__item">
+              <span class="artist-stats__num">2+</span>
+              <span class="artist-stats__label">Releases</span>
+            </div>
+            <div class="artist-stats__item">
+              <span class="artist-stats__num">JHB</span>
+              <span class="artist-stats__label">Based In</span>
+            </div>
+            <div class="artist-stats__item">
+              <span class="artist-stats__num">2024</span>
+              <span class="artist-stats__label">Signed</span>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="artist-socials">
+            <!-- Replace # with actual social URLs -->
+            <a href="#" class="artist-social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+            <a href="#" class="artist-social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+              TikTok
+            </a>
+            <a href="#" class="artist-social-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              YouTube
+            </a>
+          </div>
+        </div>
+
+        <div class="artist-bio__image animate-in animate-in--delay-2">
+          <img src="images/album-where-would-i-be.jpg" alt="Where Would I Be (Mama) — Eazy OGee" width="600" height="800" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUSIC / DISCOGRAPHY -->
+  <section class="section section--mid" id="music" aria-label="Eazy OGee discography">
+    <div class="container">
+      <div class="section-header animate-in">
+        <div class="section-header__eyebrow"><span>Discography</span></div>
+        <h2 class="section-header__title">Music</h2>
+      </div>
+
+      <div class="discography-grid animate-in animate-in--delay-1">
+
+        <article class="release-card">
+          <div class="release-card__cover">
+            <img src="images/album-where-would-i-be.jpg" alt="Where Would I Be (Mama)" width="300" height="300" loading="lazy" />
+            <div class="release-card__play" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="release-card__body">
+            <p class="release-card__title">Where Would I Be (Mama)</p>
+            <p class="release-card__artist">Eazy OGee · 2024</p>
+          </div>
+        </article>
+
+        <article class="release-card">
+          <div class="release-card__cover">
+            <img src="images/album-silent-child.jpg" alt="Silent Child feat. Eazy OGee" width="300" height="300" loading="lazy" />
+            <div class="release-card__play" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="release-card__body">
+            <p class="release-card__title">Silent Child</p>
+            <p class="release-card__artist">Xanny Pxxl ft. Eazy OGee · 2024</p>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Streaming embeds — replace with actual Spotify/YouTube embed codes -->
+      <div style="margin-top:var(--space-5);" class="animate-in animate-in--delay-2">
+        <p style="font-family:var(--font-sub);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-600);margin-bottom:var(--space-3);">
+          <!-- Stream on: -->
+        </p>
+
+        <!-- SPOTIFY EMBED PLACEHOLDER
+             Replace the src with your actual Spotify embed URL
+             Example: https://open.spotify.com/embed/artist/YOUR_ARTIST_ID?utm_source=generator&theme=0
+        -->
+        <!--
+        <iframe style="border-radius:12px;margin-bottom:16px;"
+          src="https://open.spotify.com/embed/artist/YOUR_ARTIST_ID?utm_source=generator&theme=0"
+          width="100%" height="352"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+        -->
+
+        <div class="flex gap-2" style="flex-wrap:wrap;">
+          <a href="#" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            Spotify
+          </a>
+          <a href="#" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section section--dark" id="gallery" aria-label="Eazy OGee photo gallery">
+    <div class="container">
+      <div class="section-header animate-in">
+        <div class="section-header__eyebrow"><span>Gallery</span></div>
+        <h2 class="section-header__title">Photos</h2>
+      </div>
+
+      <div class="gallery-grid animate-in animate-in--delay-1">
+        <div class="gallery-item" data-src="images/gallery-03.jpg" data-alt="Eazy OGee">
+          <img src="images/gallery-03.jpg" alt="Eazy OGee photo 1" width="400" height="400" loading="lazy" />
+          <div class="gallery-item__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item" data-src="images/gallery-10.jpg" data-alt="Eazy OGee">
+          <img src="images/gallery-10.jpg" alt="Eazy OGee photo 2" width="400" height="400" loading="lazy" />
+          <div class="gallery-item__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item" data-src="images/gallery-14.jpg" data-alt="Eazy OGee">
+          <img src="images/gallery-14.jpg" alt="Eazy OGee photo 3" width="400" height="400" loading="lazy" />
+          <div class="gallery-item__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item" data-src="images/gallery-18.jpg" data-alt="Eazy OGee">
+          <img src="images/gallery-18.jpg" alt="Eazy OGee photo 4" width="400" height="400" loading="lazy" />
+          <div class="gallery-item__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item" data-src="images/gallery-07.jpg" data-alt="Eazy OGee">
+          <img src="images/gallery-07.jpg" alt="Eazy OGee photo 5" width="400" height="400" loading="lazy" />
+          <div class="gallery-item__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
+          </div>
+        </div>
+        <div class="gallery-item" data-src="images/gallery-20.jpg" data-alt="Eazy OGee">
+          <img src="images/gallery-20.jpg" alt="Eazy OGee photo 6" width="400" height="400" loading="lazy" />
+          <div class="gallery-item__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+    <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox__prev" aria-label="Previous image">&#8249;</button>
+    <img class="lightbox__img" src="" alt="" />
+    <button class="lightbox__next" aria-label="Next image">&#8250;</button>
+  </div>
+
+  <!-- BOOKING CTA -->
+  <section class="cta-strip" aria-label="Book Eazy OGee">
+    <div class="container">
+      <p class="cta-strip__title animate-in">Book <span style="color:rgba(255,255,255,0.8)">Eazy OGee</span></p>
+      <p class="cta-strip__subtitle animate-in animate-in--delay-1">Available for features, shows, events, and brand collaborations.</p>
+      <div class="cta-strip__actions animate-in animate-in--delay-2">
+        <a href="contact.html#booking" class="btn btn--primary btn--lg">Book Now</a>
+        <a href="https://wa.me/27XXXXXXXXX?text=Hi%2C%20I%27d%20like%20to%20book%20Eazy%20OGee." class="btn btn--whatsapp btn--lg" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="images/logo.png" alt="SterkOpad Entertainment" width="120" height="48" />
+          <p class="footer__tagline">Building real artists. Real stories. Real impact. Johannesburg, South Africa.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="artists.html">Artists</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="media.html">Media</a></li>
+            <li><a href="contact.html">Work With Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">More Artists</p>
+          <ul class="footer__links">
+            <li><a href="eazy-ogee.html">Eazy OGee</a></li>
+            <li><a href="larnie-ogee.html">Larnie OGee</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Book Eazy</p>
+          <ul class="footer__links">
+            <li><a href="contact.html#booking">Booking Inquiry</a></li>
+            <li><a href="mailto:info@sterkopad.co.za">info@sterkopad.co.za</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2024 <span>SterkOpad Entertainment</span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <div class="float-cta">
+    <span class="float-cta__label">Chat with us</span>
+    <a href="https://wa.me/27XXXXXXXXX" class="float-cta__wa" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
