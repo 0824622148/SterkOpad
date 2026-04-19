@@ -1926,6 +1926,8 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   border: 1px solid var(--grey-700);
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .merch-card:hover {
@@ -1936,13 +1938,17 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 .merch-card__image {
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
-  background: var(--grey-700);
+  object-fit: contain;
+  background: #ffffff;
   display: block;
+  padding: 1rem;
 }
 
 .merch-card__body {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .merch-card__name {
@@ -1974,6 +1980,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 /* How To Order steps */
