@@ -1916,3 +1916,168 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   .discography-grid { grid-template-columns: repeat(2, 1fr); }
   .releases-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ============================================================
+   MERCH STORE
+   ============================================================ */
+
+.merch-card {
+  background: var(--charcoal);
+  border: 1px solid var(--grey-700);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.merch-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red);
+}
+
+.merch-card__image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--grey-700);
+  display: block;
+}
+
+.merch-card__body {
+  padding: 1.5rem;
+}
+
+.merch-card__name {
+  font-family: var(--font-sub);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.merch-card__price {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.merch-card__desc {
+  font-size: 0.875rem;
+  color: var(--grey-500);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.merch-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* How To Order steps */
+.order-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.order-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.order-step__num {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--red);
+  line-height: 1;
+}
+
+.order-step__title {
+  font-family: var(--font-sub);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+.order-step__desc {
+  font-size: 0.85rem;
+  color: var(--grey-500);
+  line-height: 1.5;
+}
+
+/* Info bar */
+.info-bar {
+  background: var(--charcoal);
+  border-top: 1px solid var(--grey-800);
+  border-bottom: 1px solid var(--grey-800);
+  padding: var(--space-3) 0;
+  text-align: center;
+}
+
+.info-bar__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.info-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-400);
+}
+
+.info-bar__item svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--red);
+  flex-shrink: 0;
+}
+
+/* Payment section */
+.payment-block {
+  background: var(--charcoal);
+  border: 1px solid var(--grey-700);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.payment-block__title {
+  font-family: var(--font-sub);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  margin-bottom: var(--space-2);
+}
+
+.payment-block__desc {
+  color: var(--grey-500);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .order-steps { grid-template-columns: 1fr; gap: var(--space-3); }
+  .merch-card__actions .btn { width: 100%; text-align: center; justify-content: center; }
+}
