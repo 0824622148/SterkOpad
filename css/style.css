@@ -2088,3 +2088,183 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   .order-steps { grid-template-columns: 1fr; gap: var(--space-3); }
   .merch-card__actions .btn { width: 100%; text-align: center; justify-content: center; }
 }
+
+/* ============================================================
+   24. PAYFAST SANDBOX CHECKOUT MODAL
+   ============================================================ */
+
+.btn--payfast {
+  background: #1a56db;
+  color: #fff;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  cursor: pointer;
+}
+.btn--payfast:hover {
+  background: #1648c8;
+  color: #fff;
+}
+
+.payfast-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.payfast-modal[hidden] { display: none; }
+
+.payfast-modal__box {
+  background: var(--charcoal);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.payfast-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--grey-500);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.payfast-modal__close:hover { color: var(--white); }
+
+.payfast-modal__badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.2em 0.65em;
+  border-radius: 4px;
+  margin-bottom: 0.85rem;
+}
+
+.payfast-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.payfast-modal__product {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--grey-200);
+  margin-bottom: 0.1rem;
+  min-height: 1.4em;
+}
+
+.payfast-modal__price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 1.4rem;
+  min-height: 1.4em;
+}
+
+.payfast-modal__picker {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.payfast-modal__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin-bottom: 0.5rem;
+}
+
+.payfast-modal__select {
+  width: 100%;
+  background: var(--charcoal-2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: var(--white);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  appearance: none;
+}
+.payfast-modal__select:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.payfast-modal__sizes {
+  margin-bottom: 1.4rem;
+}
+
+.payfast-modal__size-btns {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.size-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--grey-300);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.size-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--white);
+}
+.size-btn.selected {
+  border-color: var(--red);
+  background: var(--red);
+  color: #fff;
+}
+
+.payfast-modal__pay-btn {
+  width: 100%;
+  margin-top: 0.25rem;
+  transition: opacity 0.2s;
+}
+.payfast-modal__pay-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.payfast-modal__note {
+  font-size: 0.7rem;
+  color: var(--grey-600);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .payfast-modal__box { padding: 1.5rem 1.25rem; }
+}

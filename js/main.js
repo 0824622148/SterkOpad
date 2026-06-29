@@ -282,4 +282,101 @@
     });
   });
 
+  /* ============================================================
+     9. PAYFAST SANDBOX CHECKOUT
+     ============================================================ */
+  var payfastModal = document.getElementById('payfast-modal');
+
+  if (payfastModal) {
+    var pfForm      = document.getElementById('payfast-form');
+    var pfAmount    = document.getElementById('pf-amount');
+    var pfItemName  = document.getElementById('pf-item-name');
+    var pfSizes     = document.getElementById('pf-sizes');
+    var pfPicker    = document.getElementById('pf-picker');
+    var pfSelect    = document.getElementById('pf-product-select');
+    var pfProduct   = payfastModal.querySelector('.payfast-modal__product');
+    var pfPrice     = payfastModal.querySelector('.payfast-modal__price');
+    var pfPayBtn    = pfForm && pfForm.querySelector('[type="submit"]');
+    var selectedSize = null;
+
+    function pfSetProduct(name, price, hasSizes) {
+      selectedSize = hasSizes ? null : 'One Size';
+      pfProduct.textContent = name;
+      pfPrice.textContent = 'R' + parseFloat(price).toFixed(0);
+      pfAmount.value = parseFloat(price).toFixed(2);
+      pfSizes.hidden = !hasSizes;
+      document.querySelectorAll('.size-btn').forEach(function (b) { b.classList.remove('selected'); });
+      pfUpdateItemName(name);
+      pfUpdatePayBtn();
+    }
+
+    function pfUpdateItemName(name) {
+      pfItemName.value = selectedSize ? name + ' (Size: ' + selectedSize + ')' : name;
+    }
+
+    function pfUpdatePayBtn() {
+      if (pfPayBtn) pfPayBtn.disabled = !selectedSize;
+    }
+
+    function openPayfastModal(name, price, hasSizes, showPicker) {
+      pfPicker.hidden = !showPicker;
+      if (pfSelect) pfSelect.value = '';
+      if (showPicker) {
+        pfProduct.textContent = '';
+        pfPrice.textContent = '';
+        pfSizes.hidden = true;
+        if (pfPayBtn) pfPayBtn.disabled = true;
+      } else {
+        pfSetProduct(name, price, hasSizes);
+      }
+      payfastModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePayfastModal() {
+      payfastModal.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    // Size button selection
+    document.querySelectorAll('.size-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.size-btn').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        selectedSize = btn.dataset.size;
+        pfUpdateItemName(pfProduct.textContent);
+        pfUpdatePayBtn();
+      });
+    });
+
+    // Product picker (shown when opened from bottom button)
+    pfSelect && pfSelect.addEventListener('change', function () {
+      var val = pfSelect.value;
+      if (!val) return;
+      var parts = val.split('|');
+      pfSetProduct(parts[0], parts[1], parts[2] === 'true');
+    });
+
+    // Open modal from any .js-payfast-btn
+    document.querySelectorAll('.js-payfast-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openPayfastModal(
+          btn.dataset.name   || '',
+          btn.dataset.price  || '0',
+          btn.dataset.hasSizes === 'true',
+          btn.dataset.showPicker === 'true'
+        );
+      });
+    });
+
+    // Close handlers — same pattern as lightbox
+    payfastModal.querySelector('.payfast-modal__close').addEventListener('click', closePayfastModal);
+    payfastModal.addEventListener('click', function (e) {
+      if (e.target === payfastModal) closePayfastModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !payfastModal.hidden) closePayfastModal();
+    });
+  }
+
 })();
