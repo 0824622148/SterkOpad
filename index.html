@@ -17,8 +17,13 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 
+  <!-- First hero slide — fetched early so the fold paints without a flash -->
+  <link rel="preload" as="image" href="images/hero/cadillac-bg.webp" />
+  <link rel="preload" as="image" href="images/hero/cadillac-art.webp" />
+
   <!-- Favicon placeholder -->
-  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 </head>
 <body>
 
@@ -28,7 +33,7 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="SterkOpad Entertainment — Home">
-        <img src="images/logo.png" alt="SterkOpad Entertainment" width="120" height="44" />
+        <img src="images/logo.png" alt="SterkOpad Entertainment" width="59" height="44" />
       </a>
 
       <ul class="nav__links" role="list">
@@ -62,35 +67,174 @@
   </nav>
 
   <!-- =============================================
-       HERO
+       HERO — RELEASE CAROUSEL
+
+       Artwork in images/hero/ is generated from the source files in
+       "Hero Section background Images/" by tools/prep-hero-art.py.
+       Re-run that script if the artwork ever changes.
+
+       TODO: each slide's button points at "#". Replace with the real
+       Spotify / YouTube / Apple Music URL for that release.
        ============================================= -->
-  <section class="hero" aria-label="Hero">
-    <div class="hero__bg">
-      <img src="images/hero-bg.jpg" alt="SterkOpad Entertainment artists" width="1920" height="1080" fetchpriority="high" />
+  <section class="hero-carousel"
+           aria-roledescription="carousel"
+           aria-label="Latest releases">
+
+    <div class="hero-carousel__viewport">
+
+      <!-- Slide 1 — Cadillac -->
+      <article class="hero-slide is-active" data-index="0"
+               aria-roledescription="slide" aria-label="1 of 5">
+        <div class="hero-slide__bg">
+          <img src="images/hero/cadillac-bg.webp" alt="" aria-hidden="true"
+               width="1672" height="941" fetchpriority="high" />
+        </div>
+        <div class="hero-slide__inner">
+          <div class="hero-slide__copy">
+            <p class="hero-slide__credit">Eazy OGee &times; PesoThePessimist</p>
+            <h1 class="hero-slide__title"><span>Cadillac</span></h1>
+            <p class="hero-slide__format">Single</p>
+            <div class="hero-slide__cta">
+              <a href="#" class="btn btn--primary btn--lg">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Listen Now
+              </a>
+            </div>
+          </div>
+          <div class="hero-slide__art">
+            <img class="hero-slide__art-img" src="images/hero/cadillac-art.webp"
+                 alt="Cadillac by Eazy OGee and PesoThePessimist — vinyl release"
+                 width="1099" height="868" fetchpriority="high" />
+          </div>
+        </div>
+      </article>
+
+      <!-- Slide 2 — 2001 -->
+      <article class="hero-slide" data-index="1" aria-hidden="true"
+               aria-roledescription="slide" aria-label="2 of 5">
+        <div class="hero-slide__bg">
+          <img src="images/hero/2001-bg.webp" alt="" aria-hidden="true"
+               width="1672" height="941" loading="lazy" />
+        </div>
+        <div class="hero-slide__inner">
+          <div class="hero-slide__copy">
+            <p class="hero-slide__credit">Eazy OGee &times; Wazza OGee</p>
+            <h2 class="hero-slide__title"><span>2001</span></h2>
+            <p class="hero-slide__format">Single</p>
+            <div class="hero-slide__cta">
+              <a href="#" class="btn btn--primary btn--lg">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Listen Now
+              </a>
+            </div>
+          </div>
+          <div class="hero-slide__art">
+            <img class="hero-slide__art-img" src="images/hero/2001-art.webp"
+                 alt="2001 by Eazy OGee and Wazza OGee — vinyl release"
+                 width="1100" height="864" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- Slide 3 — Secret Location -->
+      <article class="hero-slide" data-index="2" aria-hidden="true"
+               aria-roledescription="slide" aria-label="3 of 5">
+        <div class="hero-slide__bg">
+          <img src="images/hero/secret-location-bg.webp" alt="" aria-hidden="true"
+               width="1672" height="941" loading="lazy" />
+        </div>
+        <div class="hero-slide__inner">
+          <div class="hero-slide__copy">
+            <p class="hero-slide__credit">PesoThePessimist, Larnie OGee &amp; Linty Lionardo</p>
+            <h2 class="hero-slide__title"><span>Secret Location</span></h2>
+            <p class="hero-slide__format">Single</p>
+            <div class="hero-slide__cta">
+              <a href="#" class="btn btn--primary btn--lg">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Listen Now
+              </a>
+            </div>
+          </div>
+          <div class="hero-slide__art">
+            <img class="hero-slide__art-img" src="images/hero/secret-location-art.webp"
+                 alt="Secret Location by PesoThePessimist, Larnie OGee and Linty Lionardo — vinyl release"
+                 width="1100" height="840" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- Slide 4 — 1 Two 8 -->
+      <article class="hero-slide" data-index="3" aria-hidden="true"
+               aria-roledescription="slide" aria-label="4 of 5">
+        <div class="hero-slide__bg">
+          <img src="images/hero/1-two-8-bg.webp" alt="" aria-hidden="true"
+               width="1672" height="941" loading="lazy" />
+        </div>
+        <div class="hero-slide__inner">
+          <div class="hero-slide__copy">
+            <p class="hero-slide__credit">Eazy OGee, Wazza OGee, Geez SA &amp; Larnie OGee</p>
+            <h2 class="hero-slide__title"><span>1 Two 8</span></h2>
+            <p class="hero-slide__format">Single</p>
+            <div class="hero-slide__cta">
+              <a href="#" class="btn btn--primary btn--lg">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Listen Now
+              </a>
+            </div>
+          </div>
+          <div class="hero-slide__art">
+            <img class="hero-slide__art-img" src="images/hero/1-two-8-art.webp"
+                 alt="1 Two 8 by Eazy OGee, Wazza OGee, Geez SA and Larnie OGee — vinyl release"
+                 width="855" height="589" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
+      <!-- Slide 5 — Kroon Kyk En Mooi Lyk -->
+      <article class="hero-slide" data-index="4" aria-hidden="true"
+               aria-roledescription="slide" aria-label="5 of 5">
+        <div class="hero-slide__bg">
+          <img src="images/hero/kroon-kyk-bg.webp" alt="" aria-hidden="true"
+               width="1672" height="941" loading="lazy" />
+        </div>
+        <div class="hero-slide__inner">
+          <div class="hero-slide__copy">
+            <p class="hero-slide__credit">Larnie OGee</p>
+            <h2 class="hero-slide__title"><span>Kroon Kyk En Mooi Lyk</span></h2>
+            <p class="hero-slide__format">Album</p>
+            <div class="hero-slide__cta">
+              <a href="#" class="btn btn--primary btn--lg">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Listen Now
+              </a>
+            </div>
+          </div>
+          <div class="hero-slide__art">
+            <img class="hero-slide__art-img" src="images/hero/kroon-kyk-art.webp"
+                 alt="Kroon Kyk En Mooi Lyk by Larnie OGee — vinyl release"
+                 width="871" height="586" loading="lazy" />
+          </div>
+        </div>
+      </article>
+
     </div>
 
-    <div class="hero__content">
-      <div class="hero__eyebrow">
-        <span>Johannesburg, South Africa</span>
-      </div>
-      <h1 class="hero__title animate-in">
-        Sterk<span>Opad</span><br>Entertainment
-      </h1>
-      <p class="hero__subtitle animate-in animate-in--delay-1">
-        Building real artists. Real stories. Real impact.
-      </p>
-      <div class="hero__actions animate-in animate-in--delay-2">
-        <a href="contact.html#demo" class="btn btn--primary btn--lg">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-          Submit Your Demo
-        </a>
-        <a href="contact.html#booking" class="btn btn--secondary btn--lg">Book an Artist</a>
-      </div>
-    </div>
+    <!-- Controls sit outside the viewport so they don't fade with the slides -->
+    <button class="hero-carousel__arrow hero-carousel__arrow--prev"
+            type="button" aria-label="Previous release">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button class="hero-carousel__arrow hero-carousel__arrow--next"
+            type="button" aria-label="Next release">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+    </button>
 
-    <div class="hero__scroll" aria-hidden="true">
-      <span>Scroll</span>
-      <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+    <div class="hero-carousel__dots" role="tablist" aria-label="Choose a release">
+      <button type="button" role="tab" aria-label="Cadillac" aria-selected="true"></button>
+      <button type="button" role="tab" aria-label="2001" aria-selected="false"></button>
+      <button type="button" role="tab" aria-label="Secret Location" aria-selected="false"></button>
+      <button type="button" role="tab" aria-label="1 Two 8" aria-selected="false"></button>
+      <button type="button" role="tab" aria-label="Kroon Kyk En Mooi Lyk" aria-selected="false"></button>
     </div>
   </section>
 
@@ -109,12 +253,12 @@
         </p>
       </div>
 
-      <div class="grid-3 animate-in animate-in--delay-1">
+      <div class="artists-grid animate-in animate-in--delay-1">
 
         <!-- Eazy OGee -->
         <article class="artist-card">
           <div class="artist-card__image">
-            <img src="images/artist-eazy-ogee.jpg" alt="Eazy OGee" width="400" height="533" loading="lazy" />
+            <img src="images/eazy-ogee/card.webp" alt="Eazy OGee" width="600" height="800" loading="lazy" />
           </div>
           <div class="artist-card__body">
             <span class="artist-card__tag">Hip-Hop / Rap</span>
@@ -129,7 +273,7 @@
         <!-- Larnie OGee -->
         <article class="artist-card">
           <div class="artist-card__image">
-            <img src="images/artist-larnie-ogee.jpg" alt="Larnie OGee" width="400" height="533" loading="lazy" />
+            <img src="images/larnie-ogee/card.webp" alt="Larnie OGee" width="600" height="800" loading="lazy" />
           </div>
           <div class="artist-card__body">
             <span class="artist-card__tag">Hip-Hop / Afrikaans Rap</span>
@@ -142,10 +286,33 @@
         </article>
 
         <!-- Placeholder -->
-        <div class="artist-card artist-card--placeholder" aria-label="More artists coming soon">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-          <span>More Coming Soon</span>
-        </div>
+        <article class="artist-card">
+          <div class="artist-card__image">
+            <img src="images/wazza-ogee/card.webp" alt="Wazza OGee" width="600" height="800" loading="lazy" />
+          </div>
+          <div class="artist-card__body">
+            <span class="artist-card__tag">Hip-Hop / Rap</span>
+            <h3 class="artist-card__name">Wazza OGee</h3>
+            <a href="wazza-ogee.html" class="artist-card__link">
+              View Profile
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-card__image">
+            <img src="images/xanny-pxxl/card.webp" alt="Xanny Pxxl" width="600" height="800" loading="lazy" />
+          </div>
+          <div class="artist-card__body">
+            <span class="artist-card__tag">Hip-Hop / Rap</span>
+            <h3 class="artist-card__name">Xanny Pxxl</h3>
+            <a href="xanny-pxxl.html" class="artist-card__link">
+              View Profile
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </article>
 
       </div>
 
@@ -361,7 +528,7 @@
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
-          <img src="images/logo.png" alt="SterkOpad Entertainment" width="120" height="48" />
+          <img src="images/logo.png" alt="SterkOpad Entertainment" width="64" height="48" />
           <p class="footer__tagline">Building real artists. Real stories. Real impact. Johannesburg, South Africa.</p>
           <div class="footer__social">
             <!-- Replace # with your actual social URLs -->

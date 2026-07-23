@@ -249,7 +249,6 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 .nav__logo img {
   height: 44px;
   width: auto;
-  filter: invert(1) brightness(2);
 }
 
 .nav__links {
@@ -503,11 +502,313 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 
 .hero--artist .hero__bg::after {
   background:
+    /* Scrim under the nav. Artist photography is often bright at the top,
+       which washes the nav links out — they sit on the image until scroll. */
+    linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.3) 16%, transparent 30%),
     linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.1) 100%);
 }
 
 .hero--artist .hero__content {
   padding-bottom: var(--space-5);
+}
+
+/* ============================================================
+   6b. HERO CAROUSEL (homepage only)
+   ------------------------------------------------------------
+   Self-contained block. Deliberately does NOT reuse the .hero
+   classes above — those are shared by seven other pages via
+   .hero--short and .hero--artist, and must not shift.
+   ============================================================ */
+.hero-carousel {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--black);
+  padding-top: var(--nav-height);
+}
+
+.hero-carousel__viewport {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- Slides --------------------------------------------------- */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Blurred release art as the backdrop */
+.hero-slide__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-slide__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(14px) saturate(0.5) brightness(0.45);
+  /* Overscale so the blur doesn't bleed transparent edges into the frame */
+  transform: scale(1.08);
+}
+
+/* Readability wash + film grain, matching the reference's texture */
+.hero-slide__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.35) 55%, transparent 100%),
+    linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 45%, transparent 75%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
+}
+
+/* Copy left, artwork right. A grid rather than free-floating layers, so the
+   title can never run underneath the sleeve at an awkward width. */
+.hero-slide__inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  padding-bottom: var(--space-5);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(16px, 4vw, 56px);
+}
+
+/* The floating vinyl mockup.
+   Two elements on purpose: the wrapper owns the slow entry animation, the
+   image inside owns the quick hover zoom. One element can only hold one
+   transform, and the two would overwrite each other. */
+.hero-slide__art {
+  justify-self: center;
+  min-width: 0;
+  transform: translateY(14px) scale(0.96);
+  opacity: 0;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7));
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.9s ease,
+              filter 0.45s ease;
+}
+
+.hero-slide.is-active .hero-slide__art {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.hero-slide__art-img {
+  width: auto;
+  max-width: 100%;
+  max-height: 62vh;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover zoom — only where hovering is real, so it can't stick on touch.
+   Autoplay pauses on carousel hover, so the zoom is never cut off by a
+   slide change. Scoped to .is-active: the inactive slides are stacked
+   underneath and must not react. */
+@media (hover: hover) {
+  .hero-slide.is-active .hero-slide__art:hover {
+    filter: drop-shadow(0 38px 70px rgba(0,0,0,0.8));
+  }
+
+  .hero-slide.is-active .hero-slide__art:hover .hero-slide__art-img {
+    transform: scale(1.06);
+  }
+
+  /* Track name — a touch gentler than the artwork. At 5.5rem a 6% jump
+     throws the whole line around; 4% reads as a lift rather than a lurch.
+     Hovering the span, not the heading, keeps the target on the text
+     itself rather than the full width of the column. */
+  .hero-slide.is-active .hero-slide__title span:hover {
+    transform: scale(1.04);
+  }
+
+  /* The button keeps the design system's own -2px lift (.btn--primary:hover)
+     and gains the matching scale. Specificity here has to clear the entry
+     animation rule on .hero-slide__cta, which is why it sits on a wrapper. */
+  .hero-slide.is-active .hero-slide__cta .btn:hover {
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+/* --- Slide copy ----------------------------------------------- */
+.hero-slide__copy {
+  min-width: 0;
+}
+
+.hero-slide__credit {
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: var(--space-1);
+}
+
+.hero-slide__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5.6vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  margin-bottom: 6px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+}
+
+/* Inner span so the heading can keep the entry animation while this
+   carries the hover zoom — same split as the artwork. */
+.hero-slide__title span {
+  display: inline-block;
+  /* Grow rightward from the left edge, not outward from the centre,
+     so the title never creeps toward the container edge. */
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-slide__format {
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-300);
+  margin-bottom: var(--space-3);
+}
+
+/* Copy slides up as it fades in — staggered behind the artwork */
+.hero-slide__credit,
+.hero-slide__title,
+.hero-slide__format,
+.hero-slide__cta {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero-slide.is-active .hero-slide__credit,
+.hero-slide.is-active .hero-slide__title,
+.hero-slide.is-active .hero-slide__format,
+.hero-slide.is-active .hero-slide__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-slide.is-active .hero-slide__credit { transition-delay: 0.15s; }
+.hero-slide.is-active .hero-slide__title  { transition-delay: 0.22s; }
+.hero-slide.is-active .hero-slide__format { transition-delay: 0.29s; }
+.hero-slide.is-active .hero-slide__cta    { transition-delay: 0.36s; }
+
+/* --- Controls ------------------------------------------------- */
+.hero-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.hero-carousel__arrow:hover {
+  background: var(--white);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.hero-carousel__arrow svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--black);
+}
+
+.hero-carousel__arrow--prev { left: clamp(12px, 2.5vw, 32px); }
+.hero-carousel__arrow--next { right: clamp(12px, 2.5vw, 32px); }
+
+.hero-carousel__dots {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: var(--space-3);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.hero-carousel__dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.hero-carousel__dots button:hover { background: rgba(255,255,255,0.7); }
+
+.hero-carousel__dots button[aria-selected="true"] {
+  background: var(--red);
+  transform: scale(1.3);
+}
+
+.hero-carousel__arrow:focus-visible,
+.hero-carousel__dots button:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* Autoplay is also disabled in main.js under this preference —
+   the manual controls keep working, they just don't animate. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide,
+  .hero-slide__art,
+  .hero-slide__art-img,
+  .hero-slide__credit,
+  .hero-slide__title,
+  .hero-slide__title span,
+  .hero-slide__format,
+  .hero-slide__cta {
+    transition-duration: 0.01s !important;
+    transition-delay: 0s !important;
+  }
+
+  .hero-slide__art,
+  .hero-slide.is-active .hero-slide__art {
+    transform: none;
+  }
+
+  /* Keep the hovers as colour and shadow changes only — no scaling */
+  .hero-slide.is-active .hero-slide__art:hover .hero-slide__art-img,
+  .hero-slide.is-active .hero-slide__title span:hover {
+    transform: none;
+  }
+
+  .hero-slide.is-active .hero-slide__cta .btn:hover {
+    transform: translateY(-2px);
+  }
 }
 
 /* ============================================================
@@ -1346,7 +1647,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 
 .footer__brand img {
   height: 48px;
-  filter: invert(1) brightness(2);
+  width: auto;
   margin-bottom: var(--space-3);
 }
 
@@ -1524,7 +1825,10 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
    ============================================================ */
 .artists-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* 240px, not 280px: the container is 1136px inside its padding, and at
+     280 only three columns fit — which left the fourth artist stranded on a
+     row of their own. At 240 the roster of four sits on one row. */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--space-3);
 }
 
@@ -1578,6 +1882,24 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Fade layer — used on the In-House Producer section (artists.html) so the
+   portrait blends into the dark section, matching the artist-card treatment. */
+.artist-bio__image--fade {
+  position: relative;
+}
+
+.artist-bio__image--fade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    /* Uniform darken across the whole image */
+    linear-gradient(rgba(10,10,10,0.4), rgba(10,10,10,0.4)),
+    /* Bottom fade into the dark section */
+    linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 45%, transparent 100%);
 }
 
 .artist-stats {
@@ -1863,6 +2185,57 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
     flex-direction: column;
     width: fit-content;
   }
+
+  /* Hero carousel — single column, artwork above the copy */
+  .hero-slide__inner {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: var(--space-3);
+    /* Clears the arrows and dots parked at the bottom edge */
+    padding-bottom: var(--space-6);
+  }
+
+  .hero-slide__art {
+    order: -1;
+  }
+
+  .hero-slide__art-img {
+    max-height: 38vh;
+  }
+
+  .hero-slide__copy {
+    text-align: center;
+  }
+
+  /* Copy is centred here, so the title must grow from its centre too */
+  .hero-slide__title span {
+    transform-origin: center;
+  }
+
+  .hero-slide__title {
+    font-size: clamp(2.1rem, 9vw, 3.2rem);
+  }
+
+  .hero-slide__bg::after {
+    background:
+      linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.2) 100%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px);
+  }
+
+  /* Arrows drop to the lower corners so they clear the artwork */
+  .hero-carousel__arrow {
+    top: auto;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    transform: none;
+  }
+
+  .hero-carousel__arrow:hover { transform: scale(1.08); }
+
+  .hero-carousel__arrow svg { width: 22px; height: 22px; }
+
+  .hero-carousel__dots { bottom: 30px; }
 
   /* Grids */
   .grid-2,

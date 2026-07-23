@@ -379,4 +379,128 @@
     });
   }
 
+  /* ============================================================
+     10. HERO RELEASE CAROUSEL (homepage)
+     ============================================================ */
+  var carousel = document.querySelector('.hero-carousel');
+
+  if (carousel) {
+    var slides = Array.from(carousel.querySelectorAll('.hero-slide'));
+    var dots   = Array.from(carousel.querySelectorAll('.hero-carousel__dots button'));
+    var prevBtnHero = carousel.querySelector('.hero-carousel__arrow--prev');
+    var nextBtnHero = carousel.querySelector('.hero-carousel__arrow--next');
+
+    // A slide takes ~1s to settle (0.8s crossfade + the staggered copy),
+    // so this is roughly 3.5s of reading time per release.
+    var AUTOPLAY_MS = 4500;
+    var current = 0;
+    var timer = null;
+
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+
+      slides.forEach(function (slide, i) {
+        var active = i === current;
+        slide.classList.toggle('is-active', active);
+        // aria-hidden must be absent (not "false") on the visible slide,
+        // otherwise its focusable CTA is announced as hidden.
+        if (active) {
+          slide.removeAttribute('aria-hidden');
+        } else {
+          slide.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      dots.forEach(function (dot, i) {
+        dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+
+      preload(current + 1);
+    }
+
+    // Slides 2-5 are lazy — warm the next one so the crossfade never
+    // reveals a half-loaded image.
+    function preload(index) {
+      var next = slides[(index + slides.length) % slides.length];
+      if (!next) return;
+      next.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+        img.loading = 'eager';
+      });
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function start() {
+      if (timer || reducedMotion.matches) return;
+      timer = setInterval(next, AUTOPLAY_MS);
+    }
+
+    // Restart the clock after a manual move, so the new slide gets a full turn
+    function jump(fn) {
+      return function () {
+        stop();
+        fn();
+        start();
+      };
+    }
+
+    nextBtnHero && nextBtnHero.addEventListener('click', jump(next));
+    prevBtnHero && prevBtnHero.addEventListener('click', jump(prev));
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', jump(function () { goTo(i); }));
+    });
+
+    // Pause while the visitor is reading or tabbing through
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', function (e) {
+      if (!carousel.contains(e.relatedTarget)) start();
+    });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { stop(); } else { start(); }
+    });
+
+    // Arrow keys, scoped to the carousel so they don't fight the lightbox
+    carousel.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { jump(prev)(); }
+      if (e.key === 'ArrowRight') { jump(next)(); }
+    });
+
+    // Swipe — ignore mostly-vertical drags so the page still scrolls
+    var touchX = 0;
+    var touchY = 0;
+
+    carousel.addEventListener('touchstart', function (e) {
+      touchX = e.changedTouches[0].clientX;
+      touchY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - touchX;
+      var dy = e.changedTouches[0].clientY - touchY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        jump(dx < 0 ? next : prev)();
+      }
+    }, { passive: true });
+
+    // Honour the preference if it's toggled after load
+    reducedMotion.addEventListener('change', function () {
+      if (reducedMotion.matches) { stop(); } else { start(); }
+    });
+
+    goTo(0);
+    start();
+  }
+
 })();

@@ -11,7 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 </head>
 <body>
 
@@ -19,7 +20,7 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="SterkOpad Entertainment — Home">
-        <img src="images/logo.png" alt="SterkOpad Entertainment" width="120" height="44" />
+        <img src="images/logo.png" alt="SterkOpad Entertainment" width="59" height="44" />
       </a>
       <ul class="nav__links" role="list">
         <li><a href="index.html">Home</a></li>
@@ -50,9 +51,6 @@
 
   <!-- HERO -->
   <section class="hero hero--short" aria-label="Artists page hero">
-    <div class="hero__bg">
-      <img src="images/gallery-14.jpg" alt="SterkOpad artists" width="1920" height="800" fetchpriority="high" />
-    </div>
     <div class="hero__content">
       <div class="hero__eyebrow"><span>SterkOpad Roster</span></div>
       <h1 class="hero__title animate-in">Our <span>Artists</span></h1>
@@ -71,7 +69,7 @@
         <!-- Eazy OGee -->
         <article class="artist-card animate-in">
           <div class="artist-card__image">
-            <img src="images/artist-eazy-ogee.jpg" alt="Eazy OGee — Hip-Hop artist from Johannesburg" width="400" height="533" loading="lazy" />
+            <img src="images/eazy-ogee/card.webp" alt="Eazy OGee — Hip-Hop artist from Johannesburg" width="600" height="800" loading="lazy" />
           </div>
           <div class="artist-card__body">
             <span class="artist-card__tag">Hip-Hop / Rap</span>
@@ -86,7 +84,7 @@
         <!-- Larnie OGee -->
         <article class="artist-card animate-in animate-in--delay-1">
           <div class="artist-card__image">
-            <img src="images/artist-larnie-ogee.jpg" alt="Larnie OGee — Afrikaans Hip-Hop artist from Johannesburg" width="400" height="533" loading="lazy" />
+            <img src="images/larnie-ogee/card.webp" alt="Larnie OGee — Afrikaans Hip-Hop artist from Johannesburg" width="600" height="800" loading="lazy" />
           </div>
           <div class="artist-card__body">
             <span class="artist-card__tag">Hip-Hop / Afrikaans Rap</span>
@@ -99,16 +97,52 @@
         </article>
 
         <!-- Placeholder cards -->
-        <div class="artist-card artist-card--placeholder animate-in animate-in--delay-2">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-          <span>More Coming Soon</span>
-        </div>
+        <article class="artist-card animate-in animate-in--delay-2">
+          <div class="artist-card__image">
+            <img src="images/wazza-ogee/card.webp" alt="Wazza OGee — Hip-Hop artist from Johannesburg" width="600" height="800" loading="lazy" />
+          </div>
+          <div class="artist-card__body">
+            <span class="artist-card__tag">Hip-Hop / Rap</span>
+            <h2 class="artist-card__name">Wazza OGee</h2>
+            <a href="wazza-ogee.html" class="artist-card__link">
+              View Profile
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </article>
 
-        <div class="artist-card artist-card--placeholder animate-in animate-in--delay-3">
-          <svg class="placeholder-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-          <span>More Coming Soon</span>
-        </div>
+        <article class="artist-card animate-in animate-in--delay-3">
+          <div class="artist-card__image">
+            <img src="images/xanny-pxxl/card.webp" alt="Xanny Pxxl — Hip-Hop artist from Johannesburg" width="600" height="800" loading="lazy" />
+          </div>
+          <div class="artist-card__body">
+            <span class="artist-card__tag">Hip-Hop / Rap</span>
+            <h2 class="artist-card__name">Xanny Pxxl</h2>
+            <a href="xanny-pxxl.html" class="artist-card__link">
+              View Profile
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </a>
+          </div>
+        </article>
 
+      </div>
+
+      <!-- IN-HOUSE PRODUCER -->
+      <div class="artist-bio animate-in" style="margin-top:var(--space-7);align-items:center;">
+        <div>
+          <div class="overline" style="margin-bottom:var(--space-2);">Behind the board</div>
+          <h2 style="color:var(--white);margin-bottom:var(--space-3);">In-House <span style="color:var(--red);">Producer</span></h2>
+          <p style="color:var(--grey-400);margin-bottom:var(--space-3);line-height:1.8;">
+            Every SterkOpad record runs through <strong style="color:var(--white);">Fvrrow Otb</strong> — production, mixing and mastering, in-house and hands-on with the whole roster.
+          </p>
+          <div class="flex gap-3" style="flex-wrap:wrap;">
+            <a href="fvrrow-otb.html" class="btn btn--secondary">View Profile</a>
+            <a href="contact.html#demo" class="btn btn--outline-red">Book a Session</a>
+          </div>
+        </div>
+        <div class="artist-bio__image artist-bio__image--fade">
+          <img src="images/fvrrow-otb/portrait.webp" alt="Fvrrow Otb working the mixing desk" width="675" height="900" loading="lazy" />
+        </div>
       </div>
 
       <!-- Are you an artist? CTA -->
@@ -141,7 +175,7 @@
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
-          <img src="images/logo.png" alt="SterkOpad Entertainment" width="120" height="48" />
+          <img src="images/logo.png" alt="SterkOpad Entertainment" width="64" height="48" />
           <p class="footer__tagline">Building real artists. Real stories. Real impact. Johannesburg, South Africa.</p>
           <div class="footer__social">
             <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
