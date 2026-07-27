@@ -420,7 +420,7 @@
       preload(current + 1);
     }
 
-    // Slides 2-5 are lazy — warm the next one so the crossfade never
+    // Every slide after the first is lazy — warm the next one so the crossfade never
     // reveals a half-loaded image.
     function preload(index) {
       var next = slides[(index + slides.length) % slides.length];

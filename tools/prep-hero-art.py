@@ -12,7 +12,10 @@ For each release we produce two assets:
 
   <slug>-bg.webp    the widescreen banner, resized to 1920px wide. It is
                     blurred and darkened to 45% brightness in CSS, so heavy
-                    compression is invisible.
+                    compression is invisible. Releases that shipped without a
+                    banner omit "bg" in the manifest; for those the backdrop
+                    is enlarged from the sleeve itself, which at 14px of blur
+                    reads as a colour wash drawn from the artwork.
 
   <slug>-art.webp   the vinyl-sleeve mockup with its baked-in backdrop
                     removed, so it floats over the hero.
@@ -89,7 +92,30 @@ MANIFEST = [
         "art":  "Kroon Kyk en Mooi Lyk Cover.png",
         "tol":  4,
     },
+    # No banner was supplied for these four — the backdrop comes off the sleeve.
+    {
+        "slug": "smokin-n-drinkin",
+        "art":  "Eazy OGee & Wazza OGee - Smokin N Drinkin cover.png",
+        "tol":  4,
+    },
+    {
+        "slug": "aan-die-brand",
+        "art":  "Larnie OGee (feat. C-P4YNE) - Aan die brand Cover.png",
+        "tol":  4,
+    },
+    {
+        "slug": "dope-scale",
+        "art":  "Eazy OGee & Wazza OGee - Dope Scale (feat. Mac D) Cover.png",
+        "tol":  4,
+    },
+    {
+        "slug": "long-road",
+        "art":  "Xanny Pxxl - Long Road (Produced by. Shawn Brooklyn) Cover.png",
+        "tol":  4,
+    },
 ]
+
+BG_ASPECT = 16 / 9
 
 BG_WIDTH = 1920
 BG_QUALITY = 70
@@ -229,7 +255,7 @@ def build_art(entry):
         )
     )
 
-    build_cover(entry, im)
+    return build_cover(entry, im)
 
 
 def build_cover(entry, art):
@@ -252,6 +278,33 @@ def build_cover(entry, art):
     print("  cover                      ->  {0[0]}x{0[1]} {1}KB".format(
         cover.size, kb(out)))
 
+    return cover
+
+
+def build_bg_from_cover(entry, cover):
+    """
+    Stand-in banner for a release that shipped without one.
+
+    Blows the square sleeve up to 1920 wide and takes the centre band. The
+    result is far too soft to read as a photograph at 1:1, but the hero blurs
+    it by 14px and drops it to 45% brightness, so all that survives is a
+    colour field — and taking it from the sleeve keeps that field on-palette.
+    """
+    out = os.path.join(OUT_DIR, entry["slug"] + "-bg.webp")
+
+    im = Image.new("RGB", cover.size, (10, 10, 10))
+    im.paste(cover, (0, 0), cover)
+
+    height = round(BG_WIDTH / BG_ASPECT)
+    im = im.resize((BG_WIDTH, BG_WIDTH), Image.LANCZOS)
+    top = (BG_WIDTH - height) // 2
+    im = im.crop((0, top, BG_WIDTH, top + height))
+
+    im.save(out, "WEBP", quality=BG_QUALITY, method=6)
+
+    print("  bg   from sleeve           ->  {0[0]}x{0[1]} {1}KB".format(
+        im.size, kb(out)))
+
 
 # ------------------------------------------------------------------
 def main():
@@ -261,13 +314,18 @@ def main():
 
     for entry in MANIFEST:
         for key in ("bg", "art"):
+            if key not in entry:
+                continue
             path = os.path.join(SRC_DIR, entry[key])
             if not os.path.isfile(path):
                 sys.exit("Missing source file: " + path)
 
         print(entry["slug"])
-        build_bg(entry)
-        build_art(entry)
+        if "bg" in entry:
+            build_bg(entry)
+            build_art(entry)
+        else:
+            build_bg_from_cover(entry, build_art(entry))
         print()
 
     print("Done. {0} releases -> {1}".format(len(MANIFEST), OUT_DIR))
