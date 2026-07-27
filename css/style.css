@@ -1727,6 +1727,9 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   font-size: 0.875rem;
   color: var(--grey-500);
   transition: color var(--transition);
+  /* The contact email has no natural break points and is nearly as wide as a
+     1fr column, so let it wrap rather than force the grid track wider. */
+  overflow-wrap: anywhere;
 }
 
 .footer__links a:hover { color: var(--white); }
@@ -2132,6 +2135,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 .contact-info-card__value {
   font-size: 0.9rem;
   color: var(--white);
+  overflow-wrap: anywhere;
 }
 
 /* ============================================================
