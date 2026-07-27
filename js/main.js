@@ -87,24 +87,7 @@
   }
 
   /* ============================================================
-     3. FLOATING CTA VISIBILITY
-     ============================================================ */
-  const floatCta = document.querySelector('.float-cta');
-
-  if (floatCta) {
-    function handleFloatCta() {
-      if (window.scrollY > 300) {
-        floatCta.classList.add('visible');
-      } else {
-        floatCta.classList.remove('visible');
-      }
-    }
-    window.addEventListener('scroll', handleFloatCta, { passive: true });
-    handleFloatCta();
-  }
-
-  /* ============================================================
-     4. LIGHTBOX
+     3. LIGHTBOX
      ============================================================ */
   const lightbox = document.getElementById('lightbox');
 

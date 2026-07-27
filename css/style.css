@@ -1730,65 +1730,6 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   color: var(--red);
 }
 
-/* ============================================================
-   16. FLOATING WHATSAPP CTA
-   ============================================================ */
-.float-cta {
-  position: fixed;
-  bottom: var(--space-3);
-  right: var(--space-3);
-  z-index: 900;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-1);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--transition), transform var(--transition);
-  pointer-events: none;
-}
-
-.float-cta.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
-}
-
-.float-cta__wa {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #25D366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.float-cta__wa:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 24px rgba(37,211,102,0.5);
-}
-
-.float-cta__wa svg {
-  width: 28px;
-  height: 28px;
-  fill: var(--white);
-}
-
-.float-cta__label {
-  font-family: var(--font-sub);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--grey-400);
-  background: var(--charcoal);
-  padding: 4px 10px;
-  border-radius: 50px;
-  white-space: nowrap;
-}
 
 /* ============================================================
    17. SCROLL ANIMATIONS
