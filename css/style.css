@@ -1923,6 +1923,83 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   max-width: 680px;
 }
 
+/* --- Studio rates ----------------------------------------------
+   Three cards mirroring the groups on the label's printed rate
+   card: studio time, production, and the budget packages. Prices
+   are right-aligned against a flexible label so a two-line label
+   never pushes the amount out of the card. */
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.rate-card {
+  background: var(--charcoal);
+  border: 1px solid var(--grey-700);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.rate-card__title {
+  font-family: var(--font-sub);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--grey-700);
+  margin-bottom: 4px;
+}
+
+.rate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: 12px 0;
+}
+
+.rate-row + .rate-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rate-row__label {
+  color: var(--grey-300);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Duration / unit, under the label so the price stays on one line */
+.rate-row__unit {
+  display: block;
+  color: var(--grey-500);
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+
+.rate-row__price {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+/* Pushed to the card foot so notes line up across cards of
+   differing row counts */
+.rate-card__note {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  color: var(--grey-500);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
 .process-steps {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
