@@ -50,9 +50,9 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero hero--short" aria-label="Apparel page hero">
+  <section class="hero hero--short hero--store" aria-label="Apparel page hero">
     <div class="hero__bg">
-      <img src="images/merch-hero.png" alt="SterkOpad Entertainment merch store" width="1920" height="800" fetchpriority="high" />
+      <img src="images/merch/store-front.webp" alt="" aria-hidden="true" width="1440" height="600" fetchpriority="high" />
     </div>
     <div class="hero__content">
       <div class="hero__eyebrow"><span>Official Store</span></div>
@@ -77,7 +77,7 @@
         </span>
         <span class="info-bar__item">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-          Pay before pickup
+          EFT or cash on pickup
         </span>
       </div>
     </div>
@@ -92,91 +92,79 @@
         </div>
         <h2 class="section-header__title">Shop The Collection</h2>
         <p class="section-header__subtitle">
-          Limited drops. Authentic label gear. Order yours on WhatsApp.
+          Limited drops, straight from the label. One message and it's yours.
         </p>
       </div>
 
-      <div class="grid-3 animate-in animate-in--delay-1">
+      <div class="merch-grid animate-in animate-in--delay-1">
 
-        <!-- T-SHIRT -->
         <article class="merch-card">
-          <img class="merch-card__image" src="images/merch-tee-black.png" alt="SterkOpad Tee" width="400" height="400" loading="lazy" />
+          <div class="merch-card__media">
+            <span class="merch-card__badge">New</span>
+            <img class="merch-card__photo" src="images/merch/tee-black.webp"
+                 alt="Black SterkOpad Entertainment unisex t-shirt with the white chest logo"
+                 width="560" height="700" loading="lazy" decoding="async" />
+          </div>
           <div class="merch-card__body">
-            <p class="merch-card__name">SterkOpad Tee</p>
+            <h3 class="merch-card__name">SterkOpad Tee</h3>
             <p class="merch-card__price">R250</p>
-            <p class="merch-card__desc">Black unisex tee with white logo print. Available in S, M, L, XL, XXL.</p>
-            <div class="merch-card__actions">
-              <!-- Replace 27XXXXXXXXX with actual WhatsApp number -->
-              <a href="https://wa.me/27XXXXXXXXX?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%3A%20SterkOpad%20Tee%20-%20please%20let%20me%20know%20available%20sizes%20and%20pickup%20details."
-                 class="btn btn--whatsapp"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Order on WhatsApp
-              </a>
-              <button class="btn btn--payfast js-payfast-btn"
-                      data-name="SterkOpad Tee"
-                      data-price="250.00"
-                      data-has-sizes="true">
-                Pay via PayFast
-              </button>
-            </div>
+            <p class="merch-card__desc">Black unisex tee with the white label logo printed on the chest.</p>
+            <p class="merch-card__meta">Unisex &middot; S&ndash;XXL</p>
+            <a class="merch-card__cta btn btn--whatsapp"
+               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Tee%20%28R250%29.%20My%20size%3A%20"
+               target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Order on WhatsApp
+            </a>
           </div>
         </article>
 
-        <!-- CAP -->
         <article class="merch-card">
-          <img class="merch-card__image" src="images/merch-cap.png" alt="SterkOpad Cap" width="400" height="400" loading="lazy" />
+          <div class="merch-card__media">
+            <img class="merch-card__photo" src="images/merch/cap.webp"
+                 alt="Black SterkOpad Entertainment snapback cap with an embroidered front logo"
+                 width="560" height="700" loading="lazy" decoding="async" />
+          </div>
           <div class="merch-card__body">
-            <p class="merch-card__name">SterkOpad Cap</p>
+            <h3 class="merch-card__name">SterkOpad Cap</h3>
             <p class="merch-card__price">R180</p>
-            <p class="merch-card__desc">Snapback cap with embroidered logo. One size fits most.</p>
-            <div class="merch-card__actions">
-              <!-- Replace 27XXXXXXXXX with actual WhatsApp number -->
-              <a href="https://wa.me/27XXXXXXXXX?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%3A%20SterkOpad%20Cap%20-%20please%20confirm%20availability%20and%20pickup%20details."
-                 class="btn btn--whatsapp"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Order on WhatsApp
-              </a>
-              <button class="btn btn--payfast js-payfast-btn"
-                      data-name="SterkOpad Cap"
-                      data-price="180.00"
-                      data-has-sizes="false">
-                Pay via PayFast
-              </button>
-            </div>
+            <p class="merch-card__desc">Snapback cap with the label logo embroidered on the front panel.</p>
+            <p class="merch-card__meta">One size fits most</p>
+            <a class="merch-card__cta btn btn--whatsapp"
+               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Cap%20%28R180%29.%20Is%20it%20in%20stock%3F"
+               target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Order on WhatsApp
+            </a>
           </div>
         </article>
 
-        <!-- HOODIE -->
         <article class="merch-card">
-          <img class="merch-card__image" src="images/merch-hoodie.png" alt="SterkOpad Hoodie" width="400" height="400" loading="lazy" />
+          <div class="merch-card__media">
+            <img class="merch-card__photo" src="images/merch/hoodie.webp"
+                 alt="Black SterkOpad Entertainment pullover hoodie with the white chest logo"
+                 width="560" height="700" loading="lazy" decoding="async" />
+          </div>
           <div class="merch-card__body">
-            <p class="merch-card__name">SterkOpad Hoodie</p>
+            <h3 class="merch-card__name">SterkOpad Hoodie</h3>
             <p class="merch-card__price">R450</p>
-            <p class="merch-card__desc">Heavyweight pullover hoodie with chest logo. Available in S, M, L, XL, XXL.</p>
-            <div class="merch-card__actions">
-              <!-- Replace 27XXXXXXXXX with actual WhatsApp number -->
-              <a href="https://wa.me/27XXXXXXXXX?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%3A%20SterkOpad%20Hoodie%20-%20please%20let%20me%20know%20available%20sizes%20and%20pickup%20details."
-                 class="btn btn--whatsapp"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Order on WhatsApp
-              </a>
-              <button class="btn btn--payfast js-payfast-btn"
-                      data-name="SterkOpad Hoodie"
-                      data-price="450.00"
-                      data-has-sizes="true">
-                Pay via PayFast
-              </button>
-            </div>
+            <p class="merch-card__desc">Heavyweight pullover hoodie with the label logo across the chest.</p>
+            <p class="merch-card__meta">Unisex &middot; S&ndash;XXL</p>
+            <a class="merch-card__cta btn btn--whatsapp"
+               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Hoodie%20%28R450%29.%20My%20size%3A%20"
+               target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Order on WhatsApp
+            </a>
           </div>
         </article>
 
       </div>
+
+      <p class="merch-note animate-in animate-in--delay-2">
+        All prices in ZAR. Sizes and stock are confirmed on WhatsApp before you pay.
+        EFT details on request.
+      </p>
     </div>
   </section>
 
@@ -201,35 +189,15 @@
         <div class="order-step">
           <span class="order-step__num">02</span>
           <p class="order-step__title">WhatsApp Us</p>
-          <p class="order-step__desc">Tap "Order on WhatsApp" — your message is pre-filled. Just hit send.</p>
+          <p class="order-step__desc">Tap Order on WhatsApp. The message is written for you &mdash; add your size and send.</p>
         </div>
 
         <div class="order-step">
           <span class="order-step__num">03</span>
           <p class="order-step__title">Pay &amp; Collect</p>
-          <p class="order-step__desc">Complete payment, then arrange your Johannesburg pickup with us.</p>
+          <p class="order-step__desc">We confirm stock and send payment details, then you collect in Joburg.</p>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- PAYMENT SECTION -->
-  <section class="section section--dark" aria-label="Payment">
-    <div class="container">
-      <div class="animate-in">
-        <div class="payment-block">
-          <p class="payment-block__title">Payment</p>
-          <p class="payment-block__desc">
-            Complete your payment online before arranging pickup. We'll confirm your order via WhatsApp once payment is received.
-          </p>
-          <button class="btn btn--payfast js-payfast-btn" data-show-picker="true">
-            Pay via PayFast
-          </button>
-          <p style="font-size:0.78rem;color:var(--grey-600);margin-top:1rem;">
-            EFT available — banking details provided via WhatsApp on request.
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -242,9 +210,8 @@
         We'll get back to you quickly — sizes, availability, pickup location, everything.
       </p>
       <div class="cta-strip__actions animate-in animate-in--delay-2">
-        <!-- Replace 27XXXXXXXXX with actual WhatsApp number -->
-        <a href="https://wa.me/27XXXXXXXXX?text=Hi%20SterkOpad%2C%20I%20have%20a%20question%20about%20your%20merch."
-           class="btn btn--whatsapp btn--lg"
+        <a href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%20have%20a%20question%20about%20your%20merch."
+           class="btn btn--primary btn--lg"
            target="_blank"
            rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -320,53 +287,6 @@
     </div>
   </footer>
 
-
-  <!-- PAYFAST SANDBOX MODAL -->
-  <div id="payfast-modal" class="payfast-modal" role="dialog" aria-modal="true" aria-labelledby="pf-modal-title" hidden>
-    <div class="payfast-modal__box">
-      <button class="payfast-modal__close" aria-label="Close modal">&times;</button>
-      <span class="payfast-modal__badge">Sandbox Demo</span>
-      <p class="payfast-modal__title" id="pf-modal-title">Pay via PayFast</p>
-
-      <div class="payfast-modal__picker" id="pf-picker" hidden>
-        <label class="payfast-modal__label" for="pf-product-select">Select product</label>
-        <select id="pf-product-select" class="payfast-modal__select">
-          <option value="">— choose a product —</option>
-          <option value="SterkOpad Tee|250.00|true">SterkOpad Tee — R250</option>
-          <option value="SterkOpad Cap|180.00|false">SterkOpad Cap — R180</option>
-          <option value="SterkOpad Hoodie|450.00|true">SterkOpad Hoodie — R450</option>
-        </select>
-      </div>
-
-      <p class="payfast-modal__product"></p>
-      <p class="payfast-modal__price"></p>
-
-      <div class="payfast-modal__sizes" id="pf-sizes" hidden>
-        <p class="payfast-modal__label">Select size</p>
-        <div class="payfast-modal__size-btns">
-          <button type="button" class="size-btn" data-size="S">S</button>
-          <button type="button" class="size-btn" data-size="M">M</button>
-          <button type="button" class="size-btn" data-size="L">L</button>
-          <button type="button" class="size-btn" data-size="XL">XL</button>
-          <button type="button" class="size-btn" data-size="XXL">XXL</button>
-        </div>
-      </div>
-
-      <form id="payfast-form" action="https://sandbox.payfast.co.za/eng/process" method="post">
-        <input type="hidden" name="merchant_id" value="10000100">
-        <input type="hidden" name="merchant_key" value="46f0cd694581a">
-        <input type="hidden" name="return_url" value="apparel.html">
-        <input type="hidden" name="cancel_url" value="apparel.html">
-        <input type="hidden" name="amount" id="pf-amount">
-        <input type="hidden" name="item_name" id="pf-item-name">
-        <button type="submit" class="btn btn--primary payfast-modal__pay-btn" disabled>
-          Continue to PayFast &rarr;
-        </button>
-      </form>
-
-      <p class="payfast-modal__note">Sandbox mode &mdash; no real payment will be processed.</p>
-    </div>
-  </div>
 
   <script src="js/main.js"></script>
 </body>

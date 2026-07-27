@@ -1,3 +1,12 @@
 # Private documents — do not publish to the public repo
 _vuka/
 proposal-retainer.html
+
+# Python bytecode from the tools/ asset scripts
+__pycache__/
+*.pyc
+
+# Source artwork bundles. Everything under Pages is publicly downloadable, so
+# keep multi-megabyte print files out of the repo — the web-ready exports in
+# images/ are what the site actually needs.
+Merch Products/*.pdf

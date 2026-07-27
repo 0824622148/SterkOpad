@@ -17,7 +17,7 @@
    13. Forms
    14. Gallery & Lightbox
    15. Footer
-   16. Floating WhatsApp CTA
+   16. Merch Store (apparel.html)
    17. Scroll Animations
    18. Page-Specific: Artists
    19. Page-Specific: Artist Profile
@@ -47,6 +47,16 @@
   --grey-500: #666666;
   --grey-400: #999999;
   --grey-300: #BBBBBB;
+
+  /* Product photo tile on apparel.html. The garments are black and shot on a
+     pale studio sweep, so the shop is the one place this site needs a light
+     surface. tools/prep-merch.py flattens every backdrop to this exact value
+     so the photo and its tile read as one surface — keep the two in step. */
+  --plate:    #EDEDEB;
+
+  /* WhatsApp brand green. Used by .btn--whatsapp and the merch card CTA. */
+  --wa-green:      #25D366;
+  --wa-green-dark: #1EA855;
 
   /* Typography */
   --font-heading:  'Bebas Neue', sans-serif;
@@ -495,6 +505,14 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 }
 
 /* Artist hero variant */
+/* The supplied storefront render spells the label "STERK PAD" — the record
+   glyph that forms the O has come away from it. tools/prep-merch.py crops to
+   the one region containing none of the four large signs, but the garments on
+   the rack still carry the wrong logo, so the image is dropped to 0.3 and used
+   as texture rather than as a photograph. This is mitigation: the render needs
+   replacing, and when it is, this rule should go. */
+.hero--store .hero__bg { opacity: 0.3; }
+
 .hero--artist {
   min-height: 80vh;
   align-items: flex-end;
@@ -880,16 +898,16 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 }
 
 .btn--whatsapp {
-  background: #25D366;
+  background: var(--wa-green);
   color: var(--white);
-  border-color: #25D366;
+  border-color: var(--wa-green);
   border-radius: 50px;
   box-shadow: 0 4px 16px rgba(37,211,102,0.3);
 }
 
 .btn--whatsapp:hover {
-  background: #1ebe5a;
-  border-color: #1ebe5a;
+  background: var(--wa-green-dark);
+  border-color: var(--wa-green-dark);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(37,211,102,0.4);
 }
@@ -2309,75 +2327,191 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 }
 
 /* ============================================================
-   MERCH STORE
+   MERCH STORE (apparel.html)
+   ------------------------------------------------------------
+   Rebuilt to house style: --radius-md, --space-* padding, named
+   transitions on var(--transition), and the growing red rail from
+   .service-card. A drop shadow is the obvious hover here but this
+   card sits on --black, where a shadow is invisible; the rail is
+   not.
+
+   The photo tile is the one light surface on the site. It cannot
+   be avoided — a black tee keyed onto charcoal is an invisible
+   tee — so instead it is made deliberate: prep-merch.py flattens
+   all three backdrops to --plate, the tile is painted the same
+   value, and the card's overflow:hidden rounds the tile's top
+   corners so it reads as part of the card rather than a hole in
+   it.
    ============================================================ */
 
+.merch-grid {
+  /* 300px, not 280. At a 1024px viewport the container is 921.6px and three
+     columns need 948px, so it steps down to two — where the old .grid-3 held
+     three ~230px cards all the way to 768px. Staging is 3 / 2 / 1 with the
+     2-column band covering 640–1060px, and it needs no media query. */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-3);
+}
+
 .merch-card {
-  background: var(--charcoal);
-  border: 1px solid var(--grey-700);
-  overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative;
   display: flex;
   flex-direction: column;
+  background: var(--charcoal);
+  border: 1px solid var(--grey-800);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.merch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 3px;
+  height: 0;
+  background: var(--red);
+  transition: height var(--transition-slow);
 }
 
 .merch-card:hover {
   transform: translateY(-4px);
-  border-color: var(--red);
+  border-color: var(--grey-600);
 }
 
-.merch-card__image {
+.merch-card:hover::before { height: 100%; }
+
+/* --- Photo tile ------------------------------------------------ */
+.merch-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--plate);
+  overflow: hidden;
+}
+
+/* Assets are pre-cropped to 4:5, so cover crops nothing — it only guards
+   against a future off-ratio file being dropped in. */
+.merch-card__photo {
   width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
-  background: #ffffff;
-  display: block;
-  padding: 1rem;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
 }
 
+.merch-card:hover .merch-card__photo { transform: scale(1.04); }
+
+.merch-card__badge {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 2;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  /* --red-dark, not --red: white on #FF073A is 3.9:1, on #CC0030 it is 5.8:1,
+     and at this size the two read as the same red. */
+  background: var(--red-dark);
+  color: var(--white);
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* --- Body ------------------------------------------------------ */
 .merch-card__body {
-  padding: 1.5rem;
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  padding: var(--space-3);
 }
 
+/* An <h3>, so the base Bebas clamp() heading style has to be fully reset. */
 .merch-card__name {
   font-family: var(--font-sub);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   color: var(--white);
-  margin-bottom: 0.25rem;
+  margin-bottom: 6px;
 }
 
 .merch-card__price {
   font-family: var(--font-body);
-  font-size: 1.1rem;
-  color: var(--red);
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  color: var(--red);
+  white-space: nowrap;
+  margin-bottom: var(--space-2);
 }
 
+/* --grey-400, not --grey-500: #666 on --charcoal is 3.03:1 and fails AA.
+   #999 is 6.11:1. */
 .merch-card__desc {
   font-size: 0.875rem;
-  color: var(--grey-500);
-  margin-bottom: 1.25rem;
   line-height: 1.6;
+  color: var(--grey-400);
 }
 
-.merch-card__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.merch-card__meta {
+  margin-top: 8px;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-sub);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-400);
+}
+
+/* margin-top:auto pins the button to the card foot, so the three line up
+   even when the descriptions wrap to different heights — the same trick as
+   .rate-card__note. __meta's margin-bottom sets the minimum gap for the
+   tallest card, where auto resolves to 0. */
+.merch-card__cta {
   margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+/* White on #25D366 is 1.98:1 — the button label is 14px, so it needs 4.5:1.
+   Near-black on the same brand green is 9.98:1. Scoped to the card; the
+   site-wide .btn--whatsapp is unchanged. */
+.merch-card .btn--whatsapp {
+  background: var(--wa-green);
+  border-color: var(--wa-green);
+  color: var(--black);
+  box-shadow: none;
+}
+
+.merch-card .btn--whatsapp:hover {
+  background: var(--wa-green-dark);
+  border-color: var(--wa-green-dark);
+  color: var(--black);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+/* Replaces the deleted payment block. --grey-400: #666 on --black is 3.7:1. */
+.merch-note {
+  margin-top: var(--space-4);
+  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--grey-400);
 }
 
 /* How To Order steps */
 .order-steps {
+  /* auto-fit rather than a fixed 3, which is what let the duplicate
+     @media (max-width: 768px) block at the foot of this file go away. */
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-4);
   text-align: center;
 }
@@ -2445,217 +2579,4 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   height: 18px;
   fill: var(--red);
   flex-shrink: 0;
-}
-
-/* Payment section */
-.payment-block {
-  background: var(--charcoal);
-  border: 1px solid var(--grey-700);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  text-align: center;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.payment-block__title {
-  font-family: var(--font-sub);
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--white);
-  margin-bottom: var(--space-2);
-}
-
-.payment-block__desc {
-  color: var(--grey-500);
-  font-size: 0.9rem;
-  margin-bottom: var(--space-4);
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .order-steps { grid-template-columns: 1fr; gap: var(--space-3); }
-  .merch-card__actions .btn { width: 100%; text-align: center; justify-content: center; }
-}
-
-/* ============================================================
-   24. PAYFAST SANDBOX CHECKOUT MODAL
-   ============================================================ */
-
-.btn--payfast {
-  background: #1a56db;
-  color: #fff;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4em;
-  cursor: pointer;
-}
-.btn--payfast:hover {
-  background: #1648c8;
-  color: #fff;
-}
-
-.payfast-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.payfast-modal[hidden] { display: none; }
-
-.payfast-modal__box {
-  background: var(--charcoal);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 2rem 1.75rem;
-  max-width: 420px;
-  width: 100%;
-  position: relative;
-  text-align: center;
-}
-
-.payfast-modal__close {
-  position: absolute;
-  top: 0.9rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: var(--grey-500);
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.payfast-modal__close:hover { color: var(--white); }
-
-.payfast-modal__badge {
-  display: inline-block;
-  background: var(--red);
-  color: #fff;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.2em 0.65em;
-  border-radius: 4px;
-  margin-bottom: 0.85rem;
-}
-
-.payfast-modal__title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 0.04em;
-  color: var(--white);
-  margin-bottom: 0.5rem;
-}
-
-.payfast-modal__product {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--grey-200);
-  margin-bottom: 0.1rem;
-  min-height: 1.4em;
-}
-
-.payfast-modal__price {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--red);
-  margin-bottom: 1.4rem;
-  min-height: 1.4em;
-}
-
-.payfast-modal__picker {
-  margin-bottom: 1.2rem;
-  text-align: left;
-}
-
-.payfast-modal__label {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--grey-500);
-  margin-bottom: 0.5rem;
-}
-
-.payfast-modal__select {
-  width: 100%;
-  background: var(--charcoal-2);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  color: var(--white);
-  padding: 0.55rem 0.75rem;
-  font-size: 0.9rem;
-  font-family: var(--font-body);
-  cursor: pointer;
-  appearance: none;
-}
-.payfast-modal__select:focus {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
-}
-
-.payfast-modal__sizes {
-  margin-bottom: 1.4rem;
-}
-
-.payfast-modal__size-btns {
-  display: flex;
-  gap: 0.45rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.size-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: var(--grey-300);
-  padding: 0.4rem 0.85rem;
-  border-radius: 6px;
-  font-size: 0.82rem;
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, color 0.15s;
-}
-.size-btn:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--white);
-}
-.size-btn.selected {
-  border-color: var(--red);
-  background: var(--red);
-  color: #fff;
-}
-
-.payfast-modal__pay-btn {
-  width: 100%;
-  margin-top: 0.25rem;
-  transition: opacity 0.2s;
-}
-.payfast-modal__pay-btn:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.payfast-modal__note {
-  font-size: 0.7rem;
-  color: var(--grey-600);
-  margin-top: 1rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 480px) {
-  .payfast-modal__box { padding: 1.5rem 1.25rem; }
 }
