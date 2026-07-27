@@ -9,29 +9,42 @@ apparel page uses. Source files are never modified. Re-runnable.
 Why this is not just a resize
 -----------------------------
 
-The three garments are photographed on a pale studio sweep, and the sweep is
-not the same in each file. Sampling the four corners:
+The sources do not agree with each other. The original studio shots sit on a
+pale sweep that differs per file - sampling the four corners of each:
 
   tee     179 186 195 206
   cap     177 254 204 254   <- white down the right edge, grey down the left
   hoodie  178 182 186 209
 
-So the cards showed three different backdrops. On top of that the sources are
-~2:3 portrait and the old CSS forced them into a square with object-fit
-contain, which letterboxed roughly a third of every tile.
+and the 2026 lookbook shoots the white tee on pure black and the black tee on
+pure white. Left alone that is four different backdrops across one product row.
+On top of it the older sources are ~2:3 portrait while the card tile is 4:5, so
+the old CSS letterboxed roughly a third of every tile away.
 
-This script fixes both: it crops to the card's real 4:5, sizes each garment to
-the same optical scale, and flattens every backdrop onto ONE colour, PLATE.
-The CSS paints .merch-card__media the same value, so photo and tile become a
-single continuous surface instead of a grey rectangle floating on a card.
+This script settles all of it: crop to the card's real 4:5, size each garment
+to a common optical scale, and flatten every backdrop onto ONE colour, PLATE.
+The CSS paints .merch-card__media the same value, so photo and tile read as a
+single continuous surface rather than a rectangle floating on a card.
 
-Backdrop removal is a lightness key, not the border flood fill used by
-prep-hero-art.py. That fill was tried here first and there is no tolerance
-that works for all three - at tol=8 the tee keys cleanly at 44% kept while
-the hoodie collapses to 5%. A lightness threshold suits these files because
-the sweep is uniformly pale and every garment is black. It is the print on
-the chest that needs care, not the garment: the logo is white, so the key is
-applied only outside the garment's bounding box.
+How the backdrop is removed
+---------------------------
+
+Breadth-first fill seeded from the border, walking only through backdrop-
+coloured pixels - pale ones for the sweep, dark ones for the lookbook's white
+tee, chosen per entry by the "key" field.
+
+Two earlier attempts are worth recording so they are not tried again:
+
+  * The colour-delta flood fill from prep-hero-art.py. There is no tolerance
+    that works for all of these - at tol=8 the old tee keys cleanly at 44%
+    kept while the hoodie collapses to 5%.
+  * A plain "recolour every pale pixel outside the garment's bounding box"
+    threshold. A bounding box is a rectangle and a garment is not, so the
+    sweep survived in the box's corners and every tile showed a faint
+    rectangle inside it - the exact artefact this script exists to remove.
+
+The fill cannot reach anything the garment silhouette encloses, so the chest
+logo is safe without needing to be masked at all.
 
 Usage:  python tools/prep-merch.py
         python tools/prep-merch.py --probe "Merch Products/New Item.png"
@@ -60,9 +73,18 @@ OUT_DIR = os.path.join(ROOT, "images", "merch")
 # bbox is the garment in source pixels, measured with --probe and then checked
 # by eye. It excludes the cast shadow, which is part of the backdrop.
 MANIFEST = [
-    {"slug": "tee-black", "src": "Black t.png", "bbox": (18, 72, 470, 616)},
-    {"slug": "cap",       "src": "Cap.png",     "bbox": (36, 154, 456, 550)},
-    {"slug": "hoodie",    "src": "Hoodie.png",  "bbox": (64, 80, 468, 580)},
+    # From the 2026 lookbook, merch.pdf page 5. The white colourway is page 1 —
+    # same artwork, logo bounding boxes matching to a pixel, shot on black
+    # rather than white, so it needs key="dark". "Tee White.png" is kept in
+    # Merch Products/ ready to add as a second card whenever the range is
+    # split by colour; the page currently lists one tee in two colourways.
+    {"slug": "tee-black", "src": "Tee Black.png", "bbox": (250, 275, 1421, 1364),
+     "key": "light", "fill_w": 0.92},
+    # Older shots. These carry the previous large centre-chest logo rather than
+    # the lookbook's small left chest, so the row is not visually consistent.
+    # Replace them with lookbook-style shots when those exist.
+    {"slug": "hoodie",    "src": "Hoodie.png",    "bbox": (64, 80, 468, 580)},
+    {"slug": "cap",       "src": "Cap.png",       "bbox": (36, 154, 456, 550)},
 ]
 
 # The one light surface on the site. Must stay in step with --plate in :root.
@@ -78,6 +100,10 @@ QUALITY = 82
 # bottoms out near 175 at the corners and the garments are black, so there is
 # a wide margin either side of this.
 KEY_THRESHOLD = 150
+
+# ...and the mirror of it for the lookbook's white tee, which is shot on pure
+# black. The garment's darkest shading sits well above this.
+DARK_KEY_THRESHOLD = 60
 
 # The storefront render spells the label "STERK PAD" - the record glyph that
 # forms the O has come away from it - and does so on the fascia, the right-hand
@@ -106,28 +132,46 @@ def kb(path):
 
 
 def probe(path):
-    """Print the dark-pixel bounding box, to seed a new MANIFEST entry."""
+    """
+    Print the garment bounding box, to seed a new MANIFEST entry.
+
+    Reads the corners first to work out which way round the shot is, so this
+    is useful on a black-backdrop file too - testing for dark pixels on one of
+    those just returns the whole frame.
+    """
     im = Image.open(path).convert("L")
-    mask = im.point(lambda v: 255 if v < KEY_THRESHOLD else 0)
+    w, h = im.size
+    corners = [im.getpixel(p) for p in ((3, 3), (w - 4, 3), (3, h - 4), (w - 4, h - 4))]
+    dark_bg = sum(corners) / 4 < 128
+
+    if dark_bg:
+        mask = im.point(lambda v: 255 if v > DARK_KEY_THRESHOLD else 0)
+    else:
+        mask = im.point(lambda v: 255 if v < KEY_THRESHOLD else 0)
+
     box = mask.getbbox()
-    print("%s  %dx%d  dark bbox = %s" % (os.path.basename(path),
-                                         im.width, im.height, box))
+    print("%s  %dx%d  key=%-5s bbox = %s"
+          % (os.path.basename(path), w, h, "dark" if dark_bg else "light", box))
     return box
 
 
-def flatten_backdrop(rgb):
+def flatten_backdrop(rgb, key="light"):
     """
     Return a copy with the backdrop replaced by PLATE.
 
-    Breadth-first fill seeded from the border, walking only through pale
-    pixels. Because it can reach nothing that the garment silhouette encloses,
-    the white chest logo survives untouched while the sweep and the cast
+    Breadth-first fill seeded from the border, walking only through backdrop-
+    coloured pixels. Because it can reach nothing that the garment silhouette
+    encloses, the chest logo survives untouched while the sweep and the cast
     shadow around the garment are flattened.
 
     A plain "every pale pixel" threshold was tried first and is wrong: the
     garment bounding box is a rectangle, the garment is not, so the sweep
     survived in the box's corners and each tile showed a faint rectangle
     inside it - the very artefact this script exists to remove.
+
+    key="light"  backdrop is the pale studio sweep (the original three shots)
+    key="dark"   backdrop is black (the white tee from the lookbook, which is
+                 shot on black - the black tee in the same set is on white)
     """
     from collections import deque
 
@@ -135,12 +179,19 @@ def flatten_backdrop(rgb):
     grey = rgb.convert("L")
     gpx, px = grey.load(), rgb.load()
 
+    if key == "light":
+        is_backdrop = lambda v: v >= KEY_THRESHOLD
+    elif key == "dark":
+        is_backdrop = lambda v: v <= DARK_KEY_THRESHOLD
+    else:
+        raise ValueError("unknown key mode: " + key)
+
     seen = bytearray(w * h)
     q = deque()
 
     def seed(x, y):
         i = y * w + x
-        if not seen[i] and gpx[x, y] >= KEY_THRESHOLD:
+        if not seen[i] and is_backdrop(gpx[x, y]):
             seen[i] = 1
             px[x, y] = PLATE
             q.append((x, y))
@@ -170,12 +221,18 @@ def build_tile(entry):
     x0, y0, x1, y1 = entry["bbox"]
     gw, gh = x1 - x0, y1 - y0
 
-    im = flatten_backdrop(im)
+    im = flatten_backdrop(im, entry.get("key", "light"))
 
     # Scale so the garment lands at a consistent size in every tile. Whichever
     # of the two limits binds first wins, so a wide hoodie and a small cap end
     # up looking like they were shot for the same grid.
-    scale = min(TILE_H * FILL_H / gh, TILE_W * FILL_W / gw)
+    #
+    # A garment wider than it is tall hits the width limit long before the
+    # height one - the lookbook tees are 1.08:1 and stopped at 61% of tile
+    # height against the hoodie's 76%, which read as a smaller product rather
+    # than a wider one. fill_w lets those entries spend more of the width.
+    scale = min(TILE_H * entry.get("fill_h", FILL_H) / gh,
+                TILE_W * entry.get("fill_w", FILL_W) / gw)
     crop_w, crop_h = TILE_W / scale, TILE_H / scale
 
     cx = (x0 + x1) / 2
