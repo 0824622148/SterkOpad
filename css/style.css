@@ -1844,6 +1844,9 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* A no-op while the portrait and its box are both 3:4, but it means a
+     future off-ratio photo loses its feet rather than its face. */
+  object-position: center top;
 }
 
 /* Fade layer — used on the In-House Producer section (artists.html) so the
@@ -2192,9 +2195,19 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
     grid-template-columns: 1fr;
   }
 
+  /* Every bio portrait is 3:4 with the subject's face high in the frame.
+     Forcing them to 16/9 here showed only the middle 42% of the source
+     height, which cut the head off entirely on a phone.
+
+     Keeping the source aspect means object-fit has nothing to crop. The
+     size is capped by width rather than height because a height cap
+     re-introduces the crop: at 1024px the container is ~921px wide, and a
+     full-width 3:4 image would be 1229px tall. */
   .artist-bio__image {
-    aspect-ratio: 16/9;
-    max-height: 400px;
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
   }
 
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
