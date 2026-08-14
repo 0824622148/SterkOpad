@@ -87,6 +87,13 @@ ARTISTS = [
             # Highest-resolution frame in the set, but he is smoking in it —
             # gallery only, never a hero or roster card. See notes to client.
             ("WhatsApp Image 2026-07-23 at 4.52.13 PMd.jpeg",    5, [],           0.10),
+            # Second batch, Aug 2026. Both gallery-only for now — the roster
+            # card, hero and bio portrait above are the shot set the client
+            # signed off on, so leave those pointing where they already do.
+            # The 4.56.30 PM frame is 1600x1557, so its square crop trims the
+            # sides rather than the top and the focus value does nothing.
+            ("WhatsApp Image 2026-08-14 at 4.56.30 PM.jpeg",     6, [],           0.35),
+            ("WhatsApp Image 2026-08-14 at 4.56.30 PMcccc.jpeg", 7, [],           0.38),
         ],
     },
     {
