@@ -53,6 +53,21 @@ OUT_DIR = os.path.join(ROOT, "images", "gallery")
 # role: (long edge, quality)
 FULL  = (1400, 80)
 THUMB = (600, 78)
+HERO  = (2000, 80)
+
+# The media page header also comes out of this set. It had been pointing at a
+# 719x745 photo stretched across a banner declared 1920x800, which is the one
+# genuinely low-quality image left on the page.
+#
+# .hero__bg img is object-fit: cover / object-position: center top, and the
+# container swings from about 4.4:1 on a desktop to taller than it is wide on a
+# phone. A frame with sky or backdrop across the top loses every face to that
+# desktop crop, so the hero is cut to a banner here first, with `focus` placing
+# the group high enough to survive it and central enough to survive the phone
+# crop, which keeps full height and trims the sides.
+HERO_FRAME = 16
+HERO_CROP = 2.2
+HERO_FOCUS = 0.60
 
 # Square crops take a `focus` value — how far down the frame the subject sits,
 # as a fraction of the height. Most of these are portrait frames with the face
@@ -135,14 +150,22 @@ def kb(path):
     return max(1, os.path.getsize(path) // 1024)
 
 
-def crop_square(im, focus):
-    """Square crop, keeping `focus` as the vertical centre."""
+def crop_ratio(im, ratio, focus):
+    """Crop to an aspect ratio, keeping `focus` as the vertical centre."""
     w, h = im.size
-    if w <= h:                              # trim top and bottom
-        top = int((h - w) * focus)
-        return im.crop((0, top, w, top + w))
-    left = (w - h) // 2                     # trim left and right
-    return im.crop((left, 0, left + h, h))
+    target_h = w / ratio
+
+    if target_h <= h:                       # trim top and bottom
+        top = int((h - target_h) * focus)
+        return im.crop((0, top, w, int(top + target_h)))
+
+    target_w = int(h * ratio)               # trim left and right
+    left = (w - target_w) // 2
+    return im.crop((left, 0, left + target_w, h))
+
+
+def crop_square(im, focus):
+    return crop_ratio(im, 1.0, focus)
 
 
 def save(im, long_edge, quality, out_path):
@@ -181,6 +204,14 @@ def main():
         print("  %02d  frame %-2d  %4dx%-4d -> thumb %dx%d %sKB / full %dx%d %sKB"
               % (order, sheet, im.width, im.height, t.width, t.height,
                  kb(thumb_path), f.width, f.height, kb(full_path)))
+
+    hero_src = ImageOps.exif_transpose(
+        Image.open(os.path.join(SRC_DIR, files[HERO_FRAME - 1]))).convert("RGB")
+    hero_path = os.path.join(OUT_DIR, "hero.webp")
+    hero = save(crop_ratio(hero_src, HERO_CROP, HERO_FOCUS), *HERO, hero_path)
+    print("\n  hero  frame %-2d  %4dx%-4d -> %dx%d %sKB"
+          % (HERO_FRAME, hero_src.width, hero_src.height,
+             hero.width, hero.height, kb(hero_path)))
 
     thumbs = sum(os.path.getsize(os.path.join(OUT_DIR, "%02d-thumb.webp" % o))
                  for o, _, _ in PHOTOS)
