@@ -65,8 +65,10 @@ COVER_DIR = os.path.join(ROOT, "images", "releases")
 # ------------------------------------------------------------------
 # tol   The per-step colour delta the fill may cross. Keep it small. Raising
 #       it lets the fill hop the sleeve edge and devour the artwork: at 7 the
-#       "1 Two 8" sleeve - a smooth purple sky - collapses from 51% kept to
-#       15%. All five verified clean at 4.
+#       "1 Two 8" sleeve - a smooth purple sky - collapsed from 51% kept to
+#       15%. That sleeve is no longer keyed (see below), but it is what the
+#       value was tuned against, and every entry still keyed verified clean
+#       at 4.
 MANIFEST = [
     {
         "slug": "cadillac",
@@ -86,11 +88,15 @@ MANIFEST = [
         "art":  "Secret location Cover.png",
         "tol":  4,
     },
+    # The sleeve mockup this shipped with had the advisory sticker misspelled
+    # three ways ("PARENIAL ADVISTRY EXPLICIT COMPENT"), so it is now the
+    # label's clean square cover. The widescreen banner is unaffected and
+    # still supplies the backdrop.
     {
         "slug": "1-two-8",
         "bg":   "Eazy Ogee Wazza Ogee Larnie Ogee 1 Two 8.png",
-        "art":  "1 Two 8 Cover.png",
-        "tol":  4,
+        "art":  "Eazy OGee (feat. Wazza OGee,Geez SA & Larnie OGee) - 1Two8 Cover.jpeg",
+        "flat": True,
     },
     {
         "slug": "kroon-kyk",
