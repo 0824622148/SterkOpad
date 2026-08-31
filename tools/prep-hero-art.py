@@ -32,6 +32,12 @@ a vignette fading from black up to a glow behind the sleeve - and all five cast
 a soft drop shadow. A fixed-colour key handles the flat backdrops but leaves
 both the vignettes and the shadows behind. This one handles all three.
 
+Not every release arrives as a mockup. Where the label supplies the finished
+square cover instead, mark it "flat" in the manifest: there is no backdrop to
+remove, and keying it would be actively wrong - a full-bleed cover reaches the
+border, so the fill would eat the artwork itself rather than a backdrop. Flat
+entries are resized and used as-is.
+
 Usage:  python tools/prep-hero-art.py
 """
 
@@ -112,6 +118,13 @@ MANIFEST = [
         "slug": "long-road",
         "art":  "Xanny Pxxl - Long Road (Produced by. Shawn Brooklyn) Cover.png",
         "tol":  4,
+    },
+    # Supplied as the finished square cover rather than a sleeve mockup, so
+    # there is nothing to key off it — see "flat" in build_art().
+    {
+        "slug": "main-ou",
+        "art":  "Larnie OGee - Main Ou Cover.jpeg",
+        "flat": True,
     },
 ]
 
@@ -220,6 +233,19 @@ def build_art(entry):
 
     original = Image.open(src)
     before = original.size
+
+    # A finished cover is already the artwork — resize and stop. The alpha is
+    # opaque throughout, purely so the cover and backdrop builders below can
+    # treat every entry the same way.
+    if entry.get("flat"):
+        im = fit(original.convert("RGB"), ART_MAX).convert("RGBA")
+        im.save(out, "WEBP", quality=ART_QUALITY, method=6)
+        print(
+            "  art  {0[0]}x{0[1]} {1}KB  ->  {2[0]}x{2[1]} {3}KB   flat".format(
+                before, kb(src), im.size, kb(out)
+            )
+        )
+        return build_cover(entry, im)
 
     # Key at the final size, which is what the tolerances are tuned against.
     rgb = fit(original.convert("RGB"), ART_MAX)

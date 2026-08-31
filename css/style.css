@@ -635,6 +635,16 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Releases that arrive as a finished square cover rather than a sleeve
+   mockup. The keyed mockups end in soft, irregular edges, so they read as an
+   object sitting on the slide; a full-bleed square would otherwise read as a
+   raw rectangle pasted over it. The radius gives it an edge of its own — kept
+   small, because the artwork runs right up to the corners and a generous
+   curve would start eating it. */
+.hero-slide__art-img--flat {
+  border-radius: var(--radius-sm);
+}
+
 /* Hover zoom — only where hovering is real, so it can't stick on touch.
    Autoplay pauses on carousel hover, so the zoom is never cut off by a
    slide change. Scoped to .is-active: the inactive slides are stacked
