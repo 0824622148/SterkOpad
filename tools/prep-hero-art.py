@@ -132,6 +132,14 @@ MANIFEST = [
         "art":  "Larnie OGee - Main Ou Cover.jpeg",
         "flat": True,
     },
+    # Also a finished cover, and one the fill would gut: the car and lettering
+    # float on an unbroken cream field that runs to all four edges, so a keyed
+    # pass would take the field, the credit line and the advisory strip with it.
+    {
+        "slug": "drop-top",
+        "art":  "Wazza OGee - Drop Top (feat. Xanny Pxxl) Cover.jpeg",
+        "flat": True,
+    },
 ]
 
 BG_ASPECT = 16 / 9
