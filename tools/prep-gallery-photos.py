@@ -18,7 +18,7 @@ frame is fetched when somebody actually clicks one.
 
 SELECTION
 ---------
-The shoot ran to 75 frames and 50 are used, chosen for spread as much as
+The source folder holds 81 frames and 56 are used, chosen for spread as much as
 quality — the raw set is heavily weighted to one performer on the mic at one
 night event, and fifty of those in a row would read as a contact sheet rather
 than a gallery. `sheet` is the frame's number in that original set, kept so a
@@ -28,11 +28,32 @@ Dropped: near-duplicates from the same burst, frames too dark to read at
 thumbnail size, two shots with a hand or head across the lens, and the "KEEZ"
 title card, which is a video still with type on it rather than a photo.
 
+Frames 76-81 are a later indoor sitting: one artist in a full branded hoodie
+and joggers against a grey wall. All six are used. They are six frames of the
+same pose and the same light, so they are the one place in the set where the
+spread rule is stretched — worth watching if the gallery grows again.
+
+The sort that produces `sheet` is alphabetical over the source filenames, and
+the WhatsApp names carry the date, so a later drop lands after the existing
+frames and the numbers above it stay put. A drop dated *earlier* than the ones
+already here would renumber everything, and this list would have to be redone.
+
 ORDER
 -----
 `order` is the grid position, and the list below is written in it. The branded
 daylight shoot opens, then colour and monochrome alternate down the grid so the
 night-event run is broken up rather than stacked.
+
+The six frames of the indoor sitting go in at 7, 16, 25, 32, 41 and 48 for the
+same reason. The gaps are deliberately uneven. `.gallery-grid` is
+
+    repeat(auto-fill, minmax(280px, 1fr))
+
+so the column count follows the viewport — anywhere from two on a phone to six
+on a wide desktop — and a constant gap of ten would have put all six in one
+column at five columns and again at two, i.e. a vertical stripe of the same
+man down the grid. These six sit on different rows, and never in the same
+column within three rows of each other, at every count from two to six.
 
 Usage:  python tools/prep-gallery-photos.py
 """
@@ -89,6 +110,18 @@ FOCUS = {
     72: 0.15,   # full body
     73: 0.40,   # studio wide — hold the desk, not the ceiling
     74: 0.55,   # both lines of the Hela Hela print, with the cap still in
+
+    # The indoor sitting. All six are 900x1600 with the subject filling the
+    # frame, so the 900px square is cut high: enough air above the beanie to
+    # keep the crown, low enough to clear the bottom of the chest print. On 77
+    # those two do not both fit — the print ends at y=959 and the beanie starts
+    # at y=57, a span of 902 in a 900 crop — so it runs tight at both edges.
+    76: 0.14,
+    77: 0.09,
+    78: 0.04,
+    79: 0.04,
+    80: 0.06,
+    81: 0.04,
 }
 
 # (order in the grid, frame number in the source set, alt text)
@@ -99,50 +132,56 @@ PHOTOS = [
     (4,  3,  "SterkOpad artist in a branded hoodie surrounded by greenery"),
     (5,  61, "Black and white portrait of a SterkOpad artist in a Nike cap"),
     (6,  15, "SterkOpad artists performing on stage"),
-    (7,  5,  "SterkOpad artist pointing to the logo on his hoodie"),
-    (8,  74, "SterkOpad artist in a Hela Hela tee against a painted wall"),
-    (9,  7,  "SterkOpad artist in a branded tee in a garden"),
-    (10, 68, "Black and white group shot of the SterkOpad crew"),
-    (11, 2,  "SterkOpad artist crouching beside a pool"),
-    (12, 27, "Black and white shot of an artist on the mic at night"),
-    (13, 63, "SterkOpad artists performing indoors with the crowd's hands up"),
-    (14, 6,  "SterkOpad artist holding open a branded hoodie"),
-    (15, 25, "Black and white shot of an artist performing at a night event"),
-    (16, 43, "Two SterkOpad artists outside a gated house"),
-    (17, 8,  "SterkOpad artist in a branded white tee"),
-    (18, 39, "An artist performing while a phone films him"),
-    (19, 19, "Three SterkOpad artists on stage together"),
-    (20, 31, "Black and white shot of an artist on the mic in a crowd"),
-    (21, 9,  "SterkOpad artist in branded white tee and joggers"),
-    (22, 58, "SterkOpad artists performing at an indoor session"),
-    (23, 10, "Black and white shot of an artist mid-verse"),
-    (24, 4,  "SterkOpad artist with one finger raised outdoors"),
-    (25, 71, "Black and white group shot of the crew outside"),
-    (26, 26, "Black and white shot of an artist on the mic holding a cup"),
-    (27, 67, "SterkOpad artist performing in a Nike hoodie"),
-    (28, 33, "Two artists sharing the mic at a night event"),
-    (29, 16, "SterkOpad artists performing under a stage canopy"),
-    (30, 29, "Black and white shot of an artist in a bucket hat on the mic"),
-    (31, 73, "An artist at the console in a recording studio"),
-    (32, 21, "Wide shot of the SterkOpad crew on stage"),
-    (33, 34, "Black and white shot of an artist performing in a Nike sweater"),
-    (34, 30, "Two women in the crowd at a SterkOpad event"),
-    (35, 46, "Two SterkOpad artists performing together at night"),
-    (36, 12, "Black and white shot of an artist performing outdoors"),
-    (37, 65, "An indoor SterkOpad session filmed on a phone"),
-    (38, 28, "Black and white shot of an artist in sunglasses on the mic"),
-    (39, 72, "SterkOpad artist performing under green stage light"),
-    (40, 23, "Close black and white shot of an artist on the mic"),
-    (41, 69, "SterkOpad artist with his arm raised mid-performance"),
-    (42, 32, "Black and white shot of an artist beside a car at night"),
-    (43, 18, "Two SterkOpad artists on stage at an outdoor show"),
-    (44, 35, "Black and white shot of an artist in a bucket hat performing"),
-    (45, 56, "SterkOpad artist outside a house in a white tee"),
-    (46, 20, "Black and white shot of a performer facing the crowd"),
-    (47, 70, "The SterkOpad crew at an indoor session"),
-    (48, 24, "Two artists performing together under an umbrella at night"),
-    (49, 62, "Wide shot of a SterkOpad indoor performance"),
-    (50, 37, "Black and white shot of the crowd at a SterkOpad event"),
+    (7,  76, "SterkOpad artist in a branded black hoodie and joggers indoors"),
+    (8,  5,  "SterkOpad artist pointing to the logo on his hoodie"),
+    (9,  74, "SterkOpad artist in a Hela Hela tee against a painted wall"),
+    (10, 7,  "SterkOpad artist in a branded tee in a garden"),
+    (11, 68, "Black and white group shot of the SterkOpad crew"),
+    (12, 2,  "SterkOpad artist crouching beside a pool"),
+    (13, 27, "Black and white shot of an artist on the mic at night"),
+    (14, 63, "SterkOpad artists performing indoors with the crowd's hands up"),
+    (15, 6,  "SterkOpad artist holding open a branded hoodie"),
+    (16, 77, "SterkOpad artist in a branded hoodie against a grey studio wall"),
+    (17, 25, "Black and white shot of an artist performing at a night event"),
+    (18, 43, "Two SterkOpad artists outside a gated house"),
+    (19, 8,  "SterkOpad artist in a branded white tee"),
+    (20, 39, "An artist performing while a phone films him"),
+    (21, 19, "Three SterkOpad artists on stage together"),
+    (22, 31, "Black and white shot of an artist on the mic in a crowd"),
+    (23, 9,  "SterkOpad artist in branded white tee and joggers"),
+    (24, 58, "SterkOpad artists performing at an indoor session"),
+    (25, 78, "SterkOpad artist in a full branded SterkOpad tracksuit"),
+    (26, 10, "Black and white shot of an artist mid-verse"),
+    (27, 4,  "SterkOpad artist with one finger raised outdoors"),
+    (28, 71, "Black and white group shot of the crew outside"),
+    (29, 26, "Black and white shot of an artist on the mic holding a cup"),
+    (30, 67, "SterkOpad artist performing in a Nike hoodie"),
+    (31, 33, "Two artists sharing the mic at a night event"),
+    (32, 79, "SterkOpad artist in a branded hoodie with his hands clasped"),
+    (33, 16, "SterkOpad artists performing under a stage canopy"),
+    (34, 29, "Black and white shot of an artist in a bucket hat on the mic"),
+    (35, 73, "An artist at the console in a recording studio"),
+    (36, 21, "Wide shot of the SterkOpad crew on stage"),
+    (37, 34, "Black and white shot of an artist performing in a Nike sweater"),
+    (38, 30, "Two women in the crowd at a SterkOpad event"),
+    (39, 46, "Two SterkOpad artists performing together at night"),
+    (40, 12, "Black and white shot of an artist performing outdoors"),
+    (41, 80, "SterkOpad artist smiling in a branded hoodie and Nike beanie"),
+    (42, 65, "An indoor SterkOpad session filmed on a phone"),
+    (43, 28, "Black and white shot of an artist in sunglasses on the mic"),
+    (44, 72, "SterkOpad artist performing under green stage light"),
+    (45, 23, "Close black and white shot of an artist on the mic"),
+    (46, 69, "SterkOpad artist with his arm raised mid-performance"),
+    (47, 32, "Black and white shot of an artist beside a car at night"),
+    (48, 81, "Portrait of a SterkOpad artist in a branded hoodie and beanie"),
+    (49, 18, "Two SterkOpad artists on stage at an outdoor show"),
+    (50, 35, "Black and white shot of an artist in a bucket hat performing"),
+    (51, 56, "SterkOpad artist outside a house in a white tee"),
+    (52, 20, "Black and white shot of a performer facing the crowd"),
+    (53, 70, "The SterkOpad crew at an indoor session"),
+    (54, 24, "Two artists performing together under an umbrella at night"),
+    (55, 62, "Wide shot of a SterkOpad indoor performance"),
+    (56, 37, "Black and white shot of the crowd at a SterkOpad event"),
 ]
 
 
