@@ -1622,6 +1622,121 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 .lightbox__prev:hover,
 .lightbox__next:hover { background: var(--red); }
 
+/* Picker — a native <dialog> listing where to go next (e.g. each artist's
+   Apple Music profile). Opened by any [data-picker-open="<dialog id>"]. */
+.picker {
+  width: min(440px, calc(100vw - var(--space-4)));
+  max-height: calc(100vh - var(--space-4));
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  background: var(--charcoal);
+  color: var(--white);
+  box-shadow: var(--shadow-card);
+}
+
+.picker::backdrop {
+  background: rgba(0,0,0,0.85);
+}
+
+.picker[open] { animation: picker-in 0.25s ease-out; }
+
+@keyframes picker-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.picker__panel {
+  position: relative;
+  padding: var(--space-4) var(--space-3) var(--space-3);
+}
+
+.picker__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.picker__close:hover { background: var(--red); }
+
+.picker__title {
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  margin: var(--space-1) 0 var(--space-3);
+}
+
+.picker__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.picker__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px var(--space-2) 10px 10px;
+  background: var(--charcoal-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--white);
+  text-decoration: none;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.picker__item:hover,
+.picker__item:focus-visible {
+  border-color: var(--red);
+  background: var(--grey-800);
+  outline: none;
+}
+
+.picker__item img {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.picker__name {
+  flex: 1;
+  font-family: var(--font-sub);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.picker__item svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--grey-400);
+  transition: fill var(--transition), transform var(--transition);
+}
+
+.picker__item:hover svg,
+.picker__item:focus-visible svg {
+  fill: var(--red);
+  transform: translateX(3px);
+}
+
 /* Video embed grid */
 .video-grid {
   display: grid;

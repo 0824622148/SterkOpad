@@ -11,6 +11,7 @@
  * 6. Active nav link
  * 7. Smooth scroll for anchor links
  * 8. Hero release carousel (homepage)
+ * 9. Picker dialogs (e.g. Apple Music artist picker)
  */
 
 (function () {
@@ -389,5 +390,33 @@
     goTo(0);
     start();
   }
+
+  /* ============================================================
+     9. PICKER DIALOGS
+     Native <dialog> handles Escape and focus; we add open/close
+     wiring, backdrop-click to close, and the page scroll lock.
+     ============================================================ */
+  document.querySelectorAll('[data-picker-open]').forEach(function (trigger) {
+    const picker = document.getElementById(trigger.dataset.pickerOpen);
+    if (!picker || typeof picker.showModal !== 'function') return;
+
+    trigger.addEventListener('click', function () {
+      picker.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+
+    picker.addEventListener('close', function () {
+      document.body.style.overflow = '';
+    });
+
+    picker.querySelectorAll('[data-picker-close], a[href]').forEach(function (el) {
+      el.addEventListener('click', function () { picker.close(); });
+    });
+
+    // A click on the dialog itself (not its panel) landed on the backdrop
+    picker.addEventListener('click', function (e) {
+      if (e.target === picker) picker.close();
+    });
+  });
 
 })();
