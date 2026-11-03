@@ -49,13 +49,9 @@
   --grey-300: #BBBBBB;
 
   /* apparel.html follows the label's Nov 2026 "STERK OPAD CATALOG.pdf": a
-     pale floral texture, a deep brown panel and a steel-blue rule. Both
-     colours are the PDF's own fills. --catalog-steel-ink is the steel darkened
-     to 5.6:1 on the pale floral, for small text; the base steel is 3.7:1
-     on brown, so it is kept to rules, swatches and fills under white text. */
+     pale floral texture and a deep brown panel (the PDF's own fill). The
+     catalogue's steel-blue rule is swapped for the site's --red. */
   --catalog-brown:     #1E0F0F;
-  --catalog-steel:     #407689;
-  --catalog-steel-ink: #2F5F70;
 
   /* WhatsApp brand green. Used by .btn--whatsapp and the merch card CTA. */
   --wa-green:      #25D366;
@@ -2481,7 +2477,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
    Styled after the label's Nov 2026 "STERK OPAD CATALOG.pdf".
    The cover becomes the hero: the dark mark on the pale floral,
    then a brown panel with big rounded top corners, the title
-   and a steel-blue rule. The product pages become the shop: the
+   and a rule in the site red. The product pages become the shop: the
    garments are cut-outs (tools/prep-catalog.py) floating on the
    same floral, each standing on a brown panel that repeats the
    cover's rounded-top shape.
@@ -2547,7 +2543,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   height: 8px;
   margin: var(--space-3) auto;
   border-radius: 8px;
-  background: var(--catalog-steel);
+  background: var(--red);
 }
 
 .catalog-hero__subtitle {
@@ -2562,9 +2558,9 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
     #E7E7E7;
 }
 
-/* Section header recoloured for the pale floral. */
-.catalog .section-header__eyebrow span { color: var(--catalog-steel-ink); }
-.catalog .section-header__eyebrow::before { background: var(--catalog-steel); }
+/* Section header recoloured for the pale floral. The eyebrow text takes
+   --red-dark: --red on the floral (~#E7E7E7) is 3.1:1, --red-dark 4.7:1. */
+.catalog .section-header__eyebrow span { color: var(--red-dark); }
 .catalog .section-header__title { color: var(--catalog-brown); }
 .catalog .section-header__subtitle { color: #4A3B3B; }
 
@@ -2636,7 +2632,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   box-shadow: 0 20px 40px rgba(30, 15, 15, 0.18);
 }
 
-/* The steel rule from the cover, grown across the panel on hover. */
+/* The rule from the cover, grown across the panel on hover. */
 .merch-card__body::before {
   content: '';
   position: absolute;
@@ -2645,7 +2641,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   width: 56px;
   height: 4px;
   border-radius: 4px;
-  background: var(--catalog-steel);
+  background: var(--red);
   transform: translateX(-50%);
   transition: width var(--transition-slow);
 }
@@ -2751,10 +2747,10 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 
 .merch-opt__chip:hover span { border-color: rgba(255, 255, 255, 0.5); }
 
-/* White on --catalog-steel is 5.0:1. */
+/* --red-dark, not --red: white on #FF073A is 3.9:1, on #CC0030 it is 5.8:1. */
 .merch-opt__chip input:checked + span {
-  background: var(--catalog-steel);
-  border-color: var(--catalog-steel);
+  background: var(--red-dark);
+  border-color: var(--red-dark);
   color: var(--white);
 }
 
@@ -2801,7 +2797,7 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   max-width: 820px;
   margin: var(--space-5) auto 0;
   padding: var(--space-3) var(--space-4);
-  border-left: 4px solid var(--catalog-steel);
+  border-left: 4px solid var(--red);
   border-radius: var(--radius-md);
   background: var(--catalog-brown);
 }
