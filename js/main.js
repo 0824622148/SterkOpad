@@ -419,4 +419,41 @@
     });
   });
 
+  /* ============================================================
+     10. MERCH OPTIONS
+     Colour / logo radios on the apparel cards. Each change swaps
+     the photo (images/merch/<merch>-<colour>-<print>.webp), its alt
+     text, and the prefilled WhatsApp message to match.
+     ============================================================ */
+  const PRINT_LABELS = { left: 'logo on the left chest', centre: 'logo centred on the chest' };
+
+  document.querySelectorAll('.merch-card[data-merch]').forEach(function (card) {
+    const radios = card.querySelectorAll('.merch-opt input[type="radio"]');
+    if (!radios.length) return;
+
+    const photo = card.querySelector('.merch-card__photo');
+    const cta = card.querySelector('.merch-card__cta');
+
+    function picked(kind) {
+      const input = card.querySelector('input[name$="-' + kind + '"]:checked');
+      return input ? input.value : '';
+    }
+
+    function update() {
+      const colour = picked('colour');
+      const print = picked('print');
+      const colourName = colour.charAt(0).toUpperCase() + colour.slice(1);
+
+      photo.src = 'images/merch/' + card.dataset.merch + '-' + colour + '-' + print + '.webp';
+      photo.alt = card.dataset.name + ' in ' + colour + ' with the ' + PRINT_LABELS[print];
+
+      const text = 'Hi SterkOpad, I\'d like to order the ' + card.dataset.name +
+        ' (' + card.dataset.price + ') in ' + colourName + ', ' + PRINT_LABELS[print] + '. Size: ';
+      cta.href = 'https://wa.me/27605234596?text=' + encodeURIComponent(text);
+    }
+
+    radios.forEach(function (radio) { radio.addEventListener('change', update); });
+    update();
+  });
+
 })();

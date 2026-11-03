@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=20261022b" />
+  <link rel="stylesheet" href="css/style.css?v=20261103b" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 </head>
@@ -49,15 +49,17 @@
     <a href="contact.html#demo" class="btn btn--primary" style="margin-top:16px">Submit Demo</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero hero--short hero--store" aria-label="Apparel page hero">
-    <div class="hero__bg">
-      <img src="images/merch/store-front.webp" alt="" aria-hidden="true" width="1440" height="600" fetchpriority="high" />
+  <!-- HERO — the cover of "STERK OPAD CATALOG.pdf" (Nov 2026): the dark mark on
+       the pale floral, over a brown panel with a steel-blue rule. -->
+  <section class="catalog-hero" aria-label="Apparel page hero">
+    <div class="catalog-hero__top">
+      <img class="catalog-hero__logo" src="images/logo-dark.png" alt="" aria-hidden="true" width="244" height="183" />
     </div>
-    <div class="hero__content">
-      <div class="hero__eyebrow"><span>Official Store</span></div>
-      <h1 class="hero__title animate-in"><span>Apparel</span></h1>
-      <p class="hero__subtitle animate-in animate-in--delay-1">
+    <div class="catalog-hero__panel">
+      <p class="catalog-hero__eyebrow animate-in">Official Store &middot; Johannesburg</p>
+      <h1 class="catalog-hero__title animate-in">Clothing Catalog</h1>
+      <span class="catalog-hero__rule animate-in animate-in--delay-1" aria-hidden="true"></span>
+      <p class="catalog-hero__subtitle animate-in animate-in--delay-1">
         Rep the label. Pick up in Joburg.
       </p>
     </div>
@@ -83,8 +85,19 @@
     </div>
   </div>
 
-  <!-- PRODUCTS GRID -->
-  <section class="section section--dark" aria-label="Apparel products">
+  <!-- PRODUCTS GRID — the range in "STERK OPAD CATALOG.pdf" (Nov 2026): tee and
+       hoodie in black or white, each with the mark centred or on the left
+       chest, plus black track pants. Photos are cut out of the PDF by
+       tools/prep-catalog.py and float on the same floral texture.
+
+       The catalogue carries no prices. These are the July 2026 list from the
+       label: tee R350, hoodie R500, track pants R500, full tracksuit R800 in
+       S / R850 in M-XXXL. The cap (R180) is not in the new catalogue.
+
+       Colour / print pickers are plain radios. main.js swaps the photo, alt
+       text and WhatsApp message on change; without it the default photo shows
+       and the message asks for colour, print and size. -->
+  <section class="section catalog" aria-label="Apparel products">
     <div class="container">
       <div class="section-header section-header--center animate-in">
         <div class="section-header__eyebrow">
@@ -92,37 +105,36 @@
         </div>
         <h2 class="section-header__title">Shop The Collection</h2>
         <p class="section-header__subtitle">
-          Limited drops, straight from the label. One message and it's yours.
+          Black or white, mark centred or on the chest. Pick your look and send it through.
         </p>
       </div>
 
-      <!-- Catalogue as supplied by the label, July 2026. Still to be added
-           once product photography exists for them:
-             TrackPants        R500  S-XXXL, black or white
-             Full Tracksuit    R800 in S, R850 in M-XXXL
-           merch.pdf covers t-shirts only. The white tee colourway is already
-           prepped — see "Tee White.png" in the manifest note in
-           tools/prep-merch.py — if the range is ever split by colour.
-
-           The hoodie and cap photos still carry the previous large centre-chest
-           logo; the tee is the current small left-chest lookbook design. Reshoot
-           those two to match. -->
       <div class="merch-grid animate-in animate-in--delay-1">
 
-        <article class="merch-card">
+        <article class="merch-card" data-merch="tee" data-name="SterkOpad Tee" data-price="R350">
           <div class="merch-card__media">
             <span class="merch-card__badge">New</span>
-            <img class="merch-card__photo" src="images/merch/tee-black.webp"
-                 alt="SterkOpad Entertainment classic logo t-shirt in black, with a small left-chest logo"
+            <img class="merch-card__photo" src="images/merch/tee-black-left.webp"
+                 alt="SterkOpad Tee in black with the logo on the left chest"
                  width="560" height="700" loading="lazy" decoding="async" />
           </div>
           <div class="merch-card__body">
             <h3 class="merch-card__name">SterkOpad Tee</h3>
             <p class="merch-card__price">R350</p>
-            <p class="merch-card__desc">Classic logo tee in 220&nbsp;GSM cotton, with the label mark on the left chest.</p>
-            <p class="merch-card__meta">Black or White &middot; S&ndash;XXXL</p>
+            <p class="merch-card__desc">Classic logo tee in 220&nbsp;GSM cotton.</p>
+            <fieldset class="merch-opt">
+              <legend class="merch-opt__label">Colour</legend>
+              <label class="merch-opt__chip"><input type="radio" name="tee-colour" value="black" checked /><span><i class="merch-opt__swatch merch-opt__swatch--black"></i>Black</span></label>
+              <label class="merch-opt__chip"><input type="radio" name="tee-colour" value="white" /><span><i class="merch-opt__swatch merch-opt__swatch--white"></i>White</span></label>
+            </fieldset>
+            <fieldset class="merch-opt">
+              <legend class="merch-opt__label">Logo</legend>
+              <label class="merch-opt__chip"><input type="radio" name="tee-print" value="left" checked /><span>Left chest</span></label>
+              <label class="merch-opt__chip"><input type="radio" name="tee-print" value="centre" /><span>Centre</span></label>
+            </fieldset>
+            <p class="merch-card__meta">Sizes S&ndash;XXXL</p>
             <a class="merch-card__cta btn btn--whatsapp"
-               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Tee%20%28R350%29.%20Colour%20and%20size%3A%20"
+               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Tee%20%28R350%29.%20Colour%2C%20logo%20position%20and%20size%3A%20"
                target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Order on WhatsApp
@@ -130,19 +142,30 @@
           </div>
         </article>
 
-        <article class="merch-card">
+        <article class="merch-card" data-merch="hoodie" data-name="SterkOpad Hoodie" data-price="R500">
           <div class="merch-card__media">
-            <img class="merch-card__photo" src="images/merch/hoodie.webp"
-                 alt="SterkOpad Entertainment classic logo pullover hoodie in black"
+            <span class="merch-card__badge">New</span>
+            <img class="merch-card__photo" src="images/merch/hoodie-black-left.webp"
+                 alt="SterkOpad Hoodie in black with the logo on the left chest"
                  width="560" height="700" loading="lazy" decoding="async" />
           </div>
           <div class="merch-card__body">
             <h3 class="merch-card__name">SterkOpad Hoodie</h3>
             <p class="merch-card__price">R500</p>
-            <p class="merch-card__desc">Classic logo hoodie. Heavyweight pullover with the label mark across the chest.</p>
-            <p class="merch-card__meta">Black or White &middot; S&ndash;XXXL</p>
+            <p class="merch-card__desc">Heavyweight pullover with a kangaroo pocket and drawstring hood.</p>
+            <fieldset class="merch-opt">
+              <legend class="merch-opt__label">Colour</legend>
+              <label class="merch-opt__chip"><input type="radio" name="hoodie-colour" value="black" checked /><span><i class="merch-opt__swatch merch-opt__swatch--black"></i>Black</span></label>
+              <label class="merch-opt__chip"><input type="radio" name="hoodie-colour" value="white" /><span><i class="merch-opt__swatch merch-opt__swatch--white"></i>White</span></label>
+            </fieldset>
+            <fieldset class="merch-opt">
+              <legend class="merch-opt__label">Logo</legend>
+              <label class="merch-opt__chip"><input type="radio" name="hoodie-print" value="left" checked /><span>Left chest</span></label>
+              <label class="merch-opt__chip"><input type="radio" name="hoodie-print" value="centre" /><span>Centre</span></label>
+            </fieldset>
+            <p class="merch-card__meta">Sizes S&ndash;XXXL</p>
             <a class="merch-card__cta btn btn--whatsapp"
-               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Hoodie%20%28R500%29.%20Colour%20and%20size%3A%20"
+               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Hoodie%20%28R500%29.%20Colour%2C%20logo%20position%20and%20size%3A%20"
                target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Order on WhatsApp
@@ -150,19 +173,20 @@
           </div>
         </article>
 
-        <article class="merch-card">
+        <article class="merch-card" data-merch="trackpants" data-name="SterkOpad Track Pants" data-price="R500">
           <div class="merch-card__media">
-            <img class="merch-card__photo" src="images/merch/cap.webp"
-                 alt="SterkOpad Entertainment snapback cap in black with an embroidered front logo"
+            <span class="merch-card__badge">New</span>
+            <img class="merch-card__photo" src="images/merch/trackpants-black.webp"
+                 alt="SterkOpad Track Pants in black with the logo on the left thigh"
                  width="560" height="700" loading="lazy" decoding="async" />
           </div>
           <div class="merch-card__body">
-            <h3 class="merch-card__name">SterkOpad Cap</h3>
-            <p class="merch-card__price">R180</p>
-            <p class="merch-card__desc">Snapback cap with the label logo embroidered on the front panel.</p>
-            <p class="merch-card__meta">One size fits most</p>
+            <h3 class="merch-card__name">SterkOpad Track Pants</h3>
+            <p class="merch-card__price">R500</p>
+            <p class="merch-card__desc">Cuffed joggers with a drawstring waist, side pockets and the mark on the thigh.</p>
+            <p class="merch-card__meta">Black &middot; Sizes S&ndash;XXXL</p>
             <a class="merch-card__cta btn btn--whatsapp"
-               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Cap%20%28R180%29.%20Is%20it%20in%20stock%3F"
+               href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20SterkOpad%20Track%20Pants%20%28R500%29.%20Size%3A%20"
                target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Order on WhatsApp
@@ -170,6 +194,20 @@
           </div>
         </article>
 
+      </div>
+
+      <!-- Full tracksuit = hoodie + track pants. Price from the July 2026 list. -->
+      <div class="merch-bundle animate-in animate-in--delay-2">
+        <div class="merch-bundle__text">
+          <p class="merch-bundle__title">Full Tracksuit</p>
+          <p class="merch-bundle__desc">Hoodie + track pants. R800 in S, R850 in M&ndash;XXXL.</p>
+        </div>
+        <a class="btn btn--whatsapp merch-bundle__cta"
+           href="https://wa.me/27605234596?text=Hi%20SterkOpad%2C%20I%27d%20like%20to%20order%20the%20Full%20Tracksuit%20%28hoodie%20%2B%20track%20pants%29.%20Hoodie%20colour%2C%20logo%20position%20and%20size%3A%20"
+           target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order The Set
+        </a>
       </div>
 
       <p class="merch-note animate-in animate-in--delay-2">
@@ -343,6 +381,6 @@
   </footer>
 
 
-  <script src="js/main.js?v=20261022"></script>
+  <script src="js/main.js?v=20261103"></script>
 </body>
 </html>
