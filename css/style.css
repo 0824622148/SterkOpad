@@ -2584,13 +2584,15 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
 
 /* --- Photo ------------------------------------------------------ */
 /* No tile colour: the cut-out sits straight on the section's floral,
-   as in the catalogue. It overlaps the panel below by a little so the
-   garment stands on it rather than hovering over a gap. */
+   as in the catalogue. prep-catalog.py stands every garment's hem 12% of
+   the tile height (15% of its width) up from the foot; the tile overlaps
+   the panel by 10% of its width, so each garment ends just above the
+   panel at any card size and nothing is hidden behind it. */
 .merch-card__media {
   position: relative;
   z-index: 1;
   aspect-ratio: 4 / 5;
-  margin-bottom: -40px;
+  margin-bottom: -10%;
 }
 
 .merch-card__photo {

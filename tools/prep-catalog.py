@@ -59,7 +59,12 @@ GARMENTS = [
 ]
 
 TILE_W, TILE_H = 560, 700    # 4:5, matches .merch-card__media
-FILL = 0.84                  # garment's longer side as a fraction of the tile
+FILL = 0.82                  # garment's longer side as a fraction of the tile
+# Every garment's hem sits this far up from the tile's foot, so they all stand
+# on the same line. .merch-card__media overlaps the brown panel below by less
+# than this - a tall garment (the track pants) centred instead had its cuffs
+# hidden behind the panel.
+FOOT = 0.12
 ZOOM = 3                     # render scale - plenty of headroom over 560px
 QUALITY = 84
 
@@ -86,7 +91,7 @@ def build_tile(im, out):
     scale = min(TILE_W * FILL / gw, TILE_H * FILL / gh)
     im = im.resize((round(gw * scale), round(gh * scale)), Image.LANCZOS)
     tile = Image.new("RGBA", (TILE_W, TILE_H), (0, 0, 0, 0))
-    tile.paste(im, ((TILE_W - im.width) // 2, round((TILE_H - im.height) * 0.46)))
+    tile.paste(im, ((TILE_W - im.width) // 2, round(TILE_H * (1 - FOOT)) - im.height))
     tile.save(out, "WEBP", quality=QUALITY, method=6)
 
 
