@@ -2827,6 +2827,12 @@ h5 { font-size: 1.1rem; font-family: var(--font-sub); font-weight: 500; }
   color: #4A3B3B;
 }
 
+/* Single-column cards are tall on a phone, so the hem-to-panel gap is
+   opened up a little more there; desktop keeps the 10% overlap. */
+@media (max-width: 640px) {
+  .merch-card__media { margin-bottom: -4%; }
+}
+
 @media (max-width: 480px) {
   .catalog-hero__panel { border-radius: 32px 32px 0 0; }
   .merch-bundle { padding: var(--space-3); }

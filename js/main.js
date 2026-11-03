@@ -426,6 +426,8 @@
      text, and the prefilled WhatsApp message to match.
      ============================================================ */
   const PRINT_LABELS = { left: 'logo on the left chest', centre: 'logo centred on the chest' };
+  // Bump with the ?v= on the photo srcs in apparel.html when prep-catalog.py is re-run.
+  const MERCH_PHOTO_VERSION = '20261103';
 
   document.querySelectorAll('.merch-card[data-merch]').forEach(function (card) {
     const radios = card.querySelectorAll('.merch-opt input[type="radio"]');
@@ -444,7 +446,7 @@
       const print = picked('print');
       const colourName = colour.charAt(0).toUpperCase() + colour.slice(1);
 
-      photo.src = 'images/merch/' + card.dataset.merch + '-' + colour + '-' + print + '.webp';
+      photo.src = 'images/merch/' + card.dataset.merch + '-' + colour + '-' + print + '.webp?v=' + MERCH_PHOTO_VERSION;
       photo.alt = card.dataset.name + ' in ' + colour + ' with the ' + PRINT_LABELS[print];
 
       const text = 'Hi SterkOpad, I\'d like to order the ' + card.dataset.name +
